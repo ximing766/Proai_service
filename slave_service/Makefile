@@ -1,20 +1,25 @@
 CC = gcc
-CFLAGS = -Wall -I. -Iinc
+CFLAGS = -Wall -Iinc
 LDFLAGS = -lm
-BUILD_DIR = build
-TARGET = $(BUILD_DIR)/slave_service
-OBJS = $(BUILD_DIR)/main.o $(BUILD_DIR)/tuya_protocol.o $(BUILD_DIR)/cJSON.o
+TARGET = slave_service
+SRCDIR = src
 
-all: $(BUILD_DIR) $(TARGET)
+# Object files: main.o (from current dir) + others (from src dir)
+OBJS = main.o $(patsubst $(SRCDIR)/%.c, %.o, $(wildcard $(SRCDIR)/*.c))
 
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
+all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+	rm -f $(OBJS)
 
-$(BUILD_DIR)/%.o: %.c
+# Compile main.c (in current directory)
+main.o: main.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Compile other sources (in src directory)
+%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(BUILD_DIR)
+	rm -f $(TARGET) $(OBJS)
