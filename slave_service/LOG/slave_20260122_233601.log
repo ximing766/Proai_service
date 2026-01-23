@@ -1,0 +1,9 @@
+[2026-01-22 23:36:01] [INFO] [main.c:73] UART opened successfully: /dev/ttyS1
+[2026-01-22 23:36:01] [INFO] [main.c:81] Socket Server listening on port 5555
+[2026-01-22 23:36:01] [INFO] [main.c:46] Starting Slave Service (JSON IPC)...
+[2026-01-22 23:36:01] [INFO] [main.c:220] --- Running JSON Handling Test ---
+[2026-01-22 23:36:01] [DEBUG] [main.c:228] Test Input: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-22 23:36:01] [DEBUG] [main.c:168] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-22 23:36:01] [DEBUG] [main.c:204] Packed Frame: 55AA0006000501010001010E
+[2026-01-22 23:36:01] [INFO] [main.c:230] --- JSON Test Finished ---
+[2026-01-22 23:36:01] [INFO] [main.c:55] Entering Main Event Loop...

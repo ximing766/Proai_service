@@ -14,70 +14,37 @@
 #include "log.h"
 #include "utils.h"
 
-#define UART_DEV "/dev/ttyS1" // 根据实际情况修改
-#define IPC_PORT 5555
-
-// Global Context
 int uart_fd = -1;
 int server_fd = -1;
 int client_fd = -1;
 tuya_parser_t parser;
 
-// --- Helper Functions Declaration ---
 void send_ipc_msg(const char *type, int cmd, const uint8_t *payload_data, int payload_len);
 void process_ipc_msg(char *json_buf);
 void handle_mcu_frame(tuya_parser_t *p);
-void init_system();
+void init_system(int log_to_file);
 void cleanup_system();
 void run_event_loop();
 void test_json_handling();
 
 // BM: main
-int main() {
-    LOG_I("Starting Slave Service (JSON IPC)...");
+int main(int argc, char *argv[]) {
+    int log_to_file = 0;
+    if (argc > 1 && strcmp(argv[1], "-f") == 0) {
+        log_to_file = 1;
+    }
+    init_system(log_to_file);
 
-    // 1. 系统资源初始化 (UART, Socket)
-    init_system();
-
-    // 2. 执行一次 JSON 处理测试 (验证功能)
     test_json_handling();
-
-    // 3. 进入主事件循环
     LOG_I("Entering Main Event Loop...");
     while (1) {
         run_event_loop();
     }
-
-    // 4. 清理资源 
     cleanup_system();
     return 0;
 }
 
-void init_system() {
-    uart_fd = open_uart(UART_DEV); 
-    if (uart_fd < 0) {
-        LOG_W("Failed to open UART %s. Running in Mock Mode.", UART_DEV);
-    } else {
-        LOG_I("UART opened successfully: %s", UART_DEV);
-    }
-    
-    server_fd = init_socket_server(IPC_PORT);
-    if (server_fd < 0) {
-        LOG_E("Failed to init socket server");
-        exit(1);
-    }
-    LOG_I("Socket Server listening on port %d", IPC_PORT);
-
-    tuya_parser_init(&parser);
-}
-
-void cleanup_system() {
-    if (client_fd > 0) close(client_fd);
-    if (server_fd > 0) close(server_fd);
-    if (uart_fd > 0) close(uart_fd);
-}
-
-// 事件循环：处理 Socket 连接、IPC 消息、串口消息
+// BM: Run Event Loop
 void run_event_loop() {
     fd_set read_fds;
     FD_ZERO(&read_fds);
@@ -150,7 +117,7 @@ void run_event_loop() {
     }
 }
 
-// 处理来自 Master 的 JSON 消息
+// BM: Process IPC message from Master
 void process_ipc_msg(char *json_buf) {
     LOG_D("Recv JSON: %s", json_buf);
 
@@ -202,21 +169,18 @@ void process_ipc_msg(char *json_buf) {
     cJSON_Delete(root);
 }
 
-// 简单的 JSON 处理测试
 void test_json_handling() {
     LOG_I("--- Running JSON Handling Test ---");
-    // 模拟一个来自 Master 的 send_mcu 消息 (payload 模式)
     const char *test_json = "{\"type\": \"send_mcu\", \"data\": {\"cmd\": 6, \"payload\": \"0101000101\"}}";
-    
-    // 这里的 buf 需要是可写的，因为某些 JSON 解析器可能会修改字符串(cJSON一般不会，但为了安全)
     char buf[256];
     strncpy(buf, test_json, sizeof(buf));
     
     LOG_D("Test Input: %s", buf);
-    process_ipc_msg(buf); // 应该会触发 [Mock UART TX]
+    process_ipc_msg(buf);
     LOG_I("--- JSON Test Finished ---");
 }
 
+// BM: Send IPC to Master
 void send_ipc_msg(const char *type, int cmd, const uint8_t *payload_data, int payload_len) {
     if (client_fd < 0) return;
 
@@ -249,3 +213,31 @@ void handle_mcu_frame(tuya_parser_t *p) {
     LOG_I("Recv MCU Frame: Cmd=0x%02X Len=%d", p->cmd, p->data_len);
     send_ipc_msg(IPC_TYPE_EVT_MCU, p->cmd, p->data_buf, p->data_len);
 }
+
+void init_system(int log_to_file) {
+    log_init(log_to_file);
+
+    uart_fd = open_uart(UART_DEV); 
+    if (uart_fd < 0) {
+        LOG_W("Failed to open UART %s. Running in Mock Mode.", UART_DEV);
+    } else {
+        LOG_I("UART opened successfully: %s", UART_DEV);
+    }
+    
+    server_fd = init_socket_server(IPC_PORT);
+    if (server_fd < 0) {
+        LOG_E("Failed to init socket server");
+        exit(1);
+    }
+    LOG_I("Socket Server listening on port %d", IPC_PORT);
+
+    tuya_parser_init(&parser);
+}
+
+void cleanup_system() {
+    if (client_fd > 0) close(client_fd);
+    if (server_fd > 0) close(server_fd);
+    if (uart_fd > 0) close(uart_fd);
+    log_close();
+}
+

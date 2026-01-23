@@ -3,9 +3,21 @@
 
 #include <stdio.h>
 
-#define LOG_I(fmt, ...) printf("[INFO] " fmt "\n", ##__VA_ARGS__)
-#define LOG_D(fmt, ...) printf("[DEBUG] " fmt "\n", ##__VA_ARGS__)
-#define LOG_W(fmt, ...) printf("[WARN] " fmt "\n", ##__VA_ARGS__)
-#define LOG_E(fmt, ...) fprintf(stderr, "[ERROR] " fmt "\n", ##__VA_ARGS__)
+typedef enum {
+    LOG_LEVEL_INFO,
+    LOG_LEVEL_DEBUG,
+    LOG_LEVEL_WARN,
+    LOG_LEVEL_ERROR
+} LogLevel;
+
+// to_file: 1=输出到文件, 0=输出到终端
+void log_init(int to_file);
+void log_close(void);
+void log_write(LogLevel level, const char *file, int line, const char *fmt, ...);
+
+#define LOG_I(fmt, ...) log_write(LOG_LEVEL_INFO, __FILE__, __LINE__, fmt, ##__VA_ARGS__)
+#define LOG_D(fmt, ...) log_write(LOG_LEVEL_DEBUG, __FILE__, __LINE__, fmt, ##__VA_ARGS__)
+#define LOG_W(fmt, ...) log_write(LOG_LEVEL_WARN, __FILE__, __LINE__, fmt, ##__VA_ARGS__)
+#define LOG_E(fmt, ...) log_write(LOG_LEVEL_ERROR, __FILE__, __LINE__, fmt, ##__VA_ARGS__)
 
 #endif // _LOG_H_

@@ -4,11 +4,9 @@
 #include <stdint.h>
 #include <stddef.h>
 
-// 涂鸦串口协议定义
 #define TUYA_FRAME_HEAD     0x55AA
 #define TUYA_MIN_FRAME_LEN  7
 
-// 命令字
 #define CMD_HEARTBEAT       0x00
 #define CMD_PRODUCT_INFO    0x01
 #define CMD_WORK_MODE       0x02
@@ -20,10 +18,9 @@
 #define CMD_UPGRADE_START   0x0a
 #define CMD_UPGRADE_TRANS   0x0b
 
-// 函数声明
 uint8_t tuya_check_sum(uint8_t *data, int len);
 int tuya_pack_frame(uint8_t cmd, uint8_t *data, uint16_t len, uint8_t *out_buf);
-// 简单的状态机解析
+
 typedef enum {
     STATE_HEAD_1,
     STATE_HEAD_2,

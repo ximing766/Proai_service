@@ -36,8 +36,8 @@ int open_uart(const char *dev) {
     }
     struct termios options;
     tcgetattr(fd, &options);
-    cfsetispeed(&options, B9600);
-    cfsetospeed(&options, B9600);
+    cfsetispeed(&options, BAUD);
+    cfsetospeed(&options, BAUD);
     options.c_cflag |= (CLOCAL | CREAD);
     options.c_cflag &= ~PARENB;
     options.c_cflag &= ~CSTOPB;
