@@ -1,6 +1,5 @@
-#include "utils.h"
+#include "../inc/utils.h"
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -8,7 +7,6 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include "log.h"
 
 void bin2hex(const uint8_t *bin, int len, char *hex) {
     for (int i = 0; i < len; i++) {

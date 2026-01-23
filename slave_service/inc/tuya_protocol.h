@@ -6,6 +6,7 @@
 
 #define TUYA_FRAME_HEAD     0x55AA
 #define TUYA_MIN_FRAME_LEN  7
+#define TUYA_VERSION        0x00
 
 #define CMD_HEARTBEAT       0x00
 #define CMD_PRODUCT_INFO    0x01

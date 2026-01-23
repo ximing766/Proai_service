@@ -9,10 +9,10 @@
 #include <errno.h>
 #include <sys/select.h>
 #include <arpa/inet.h>
-#include "tuya_protocol.h"
-#include "ipc_protocol.h"
-#include "log.h"
-#include "utils.h"
+#include "inc/tuya_protocol.h"
+#include "inc/ipc_protocol.h"
+#include "inc/log.h"
+#include "inc/utils.h"
 
 int uart_fd = -1;
 int server_fd = -1;
@@ -47,21 +47,21 @@ int main(int argc, char *argv[]) {
 // BM: Run Event Loop
 void run_event_loop() {
     fd_set read_fds;
-    FD_ZERO(&read_fds);
+    FD_ZERO(&read_fds);                 // 1. 清空集合
     
     int max_fd = server_fd;
-    FD_SET(server_fd, &read_fds);
+    FD_SET(server_fd, &read_fds);       // 2. 必选：把 server_fd 放进去 (为了随时响应新连接)
     
-    if (client_fd > 0) {
+    if (client_fd > 0) {                // 3. 可选：如果有客户端连着，把 client_fd 也放进去
         FD_SET(client_fd, &read_fds);
         if (client_fd > max_fd) max_fd = client_fd;
     }
-    if (uart_fd > 0) {
+    if (uart_fd > 0) {                  // 4. 可选：如果串口打开了，把 uart_fd 也放进去 
         FD_SET(uart_fd, &read_fds);
         if (uart_fd > max_fd) max_fd = uart_fd;
     }
 
-    // 阻塞等待事件
+    // 5. 提交给内核，开始死等 (阻塞)
     int activity = select(max_fd + 1, &read_fds, NULL, NULL, NULL);
     
     if (activity < 0 && errno != EINTR) {
@@ -117,7 +117,7 @@ void run_event_loop() {
     }
 }
 
-// BM: Process IPC message from Master
+// BM: Process JSON from Master
 void process_ipc_msg(char *json_buf) {
     LOG_D("Recv JSON: %s", json_buf);
 
@@ -140,12 +140,20 @@ void process_ipc_msg(char *json_buf) {
             cJSON *cmd_item = cJSON_GetObjectItem(data_item, "cmd");
             cJSON *payload_item = cJSON_GetObjectItem(data_item, "payload");
             
-            if (cmd_item && payload_item && cJSON_IsString(payload_item)) {
+            if (cmd_item) {
                 uint8_t cmd = (uint8_t)cmd_item->valueint;
-                char *hex = payload_item->valuestring;
-                int hex_len = strlen(hex) / 2;
-                uint8_t *tx_data = malloc(hex_len);
-                hex2bin(hex, tx_data, hex_len);
+                uint8_t *tx_data = NULL;
+                int hex_len = 0;
+
+                // 只有当 payload 存在且为字符串时才解析
+                if (payload_item && cJSON_IsString(payload_item)) {
+                    char *hex = payload_item->valuestring;
+                    hex_len = strlen(hex) / 2;
+                    if (hex_len > 0) {
+                        tx_data = malloc(hex_len);
+                        hex2bin(hex, tx_data, hex_len);
+                    }
+                }
                 
                 uint8_t tx_buf[1024];
                 int tx_len = tuya_pack_frame(cmd, tx_data, hex_len, tx_buf);
@@ -155,13 +163,13 @@ void process_ipc_msg(char *json_buf) {
                 
                 if (uart_fd > 0) {
                     write(uart_fd, tx_buf, tx_len);
-                    LOG_D("Packed Frame: %s", tx_hex);
+                    LOG_D("UART TX: %s", tx_hex);
                 } else {
-                    LOG_I("[Mock UART TX] Raw: %s", tx_hex);
+                    LOG_I("Mock UART TX: %s", tx_hex);
                 }
                 
                 free(tx_hex);
-                free(tx_data);
+                if (tx_data) free(tx_data);
             }
         }
     } 
@@ -175,12 +183,11 @@ void test_json_handling() {
     char buf[256];
     strncpy(buf, test_json, sizeof(buf));
     
-    LOG_D("Test Input: %s", buf);
     process_ipc_msg(buf);
     LOG_I("--- JSON Test Finished ---");
 }
 
-// BM: Send IPC to Master
+// BM: Send JSON to Master
 void send_ipc_msg(const char *type, int cmd, const uint8_t *payload_data, int payload_len) {
     if (client_fd < 0) return;
 

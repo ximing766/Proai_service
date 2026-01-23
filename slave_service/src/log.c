@@ -1,8 +1,6 @@
-#include "log.h"
+#include "../inc/log.h"
 #include <stdarg.h>
 #include <time.h>
-#include <string.h>
-#include <stdlib.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -51,7 +49,7 @@ void log_close(void) {
     }
 }
 
-void log_write(LogLevel level, const char *file, int line, const char *fmt, ...) {
+void log_write(LogLevel level, const char *fmt, ...) {
     // 获取当前时间
     time_t now = time(NULL);
     struct tm *t = localtime(&now);
@@ -92,7 +90,7 @@ void log_write(LogLevel level, const char *file, int line, const char *fmt, ...)
     }
 
     // 组装日志信息
-    // 格式: [时间] [级别] [文件名:行号] 内容
+    // 格式: [时间] [级别] 内容
     // 文件输出时不带颜色，终端输出带颜色
     
     va_list args;
@@ -100,13 +98,13 @@ void log_write(LogLevel level, const char *file, int line, const char *fmt, ...)
 
     if (use_file && log_fp) {
         // 文件输出 (无颜色)
-        fprintf(log_fp, "[%s] [%s] [%s:%d] ", time_buf, level_str, file, line);
+        fprintf(log_fp, "[%s] [%s] ", time_buf, level_str);
         vfprintf(log_fp, fmt, args);
         fprintf(log_fp, "\n");
         fflush(log_fp); // 确保立即写入磁盘
     } else {
         // 终端输出 (带颜色)
-        fprintf(out, "%s[%s] [%s] [%s:%d] ", color_start, time_buf, level_str, file, line);
+        fprintf(out, "%s[%s] [%s] ", color_start, time_buf, level_str);
         vfprintf(out, fmt, args);
         fprintf(out, "%s\n", color_end);
     }

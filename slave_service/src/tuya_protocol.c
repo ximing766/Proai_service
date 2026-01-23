@@ -1,4 +1,4 @@
-#include "tuya_protocol.h"
+#include "../inc/tuya_protocol.h"
 #include <string.h>
 
 uint8_t tuya_check_sum(uint8_t *data, int len) {
@@ -13,7 +13,7 @@ int tuya_pack_frame(uint8_t cmd, uint8_t *data, uint16_t len, uint8_t *out_buf) 
     int idx = 0;
     out_buf[idx++] = 0x55;
     out_buf[idx++] = 0xAA;
-    out_buf[idx++] = 0x00; // Version
+    out_buf[idx++] = TUYA_VERSION; // Version
     out_buf[idx++] = cmd;
     out_buf[idx++] = (len >> 8) & 0xFF;
     out_buf[idx++] = len & 0xFF;

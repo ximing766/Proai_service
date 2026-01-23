@@ -50,8 +50,8 @@
 | Type | 说明 | Data 结构 | 示例 |
 | :--- | :--- | :--- | :--- |
 | `heartbeat` | 心跳保活 | (无) | `{"type": "heartbeat"}` |
-| `send_mcu` | Master->Slave 发送串口指令 | `cmd` (int), `payload` (hex string) | `{"type": "send_mcu", "data": {"cmd": 6, "payload": "010001"}}` |
-| `evt_mcu` | Slave->Master 上报 MCU 数据 | `cmd` (int), `payload` (hex string) | `{"type": "evt_mcu", "data": {"cmd": 7, "payload": "010001"}}` |
+| `send_mcu` | Master->Slave 发送串口指令 | `cmd` (int), `payload` (string, optional) | `{"type": "send_mcu", "data": {"cmd": 8}}` (无 payload) |
+| `evt_mcu` | Slave->Master 上报 MCU 数据 | `cmd` (int), `payload` (string, optional) | `{"type": "evt_mcu", "data": {"cmd": 7, "payload": "010001"}}` |
 | `slave_status` | 状态报告 | `code` (int), `msg` (string) | `{"type": "slave_status", "data": {"code": 1, "msg": "UART Error"}}` |
 
 ---
@@ -72,7 +72,17 @@
     *   **自动封装**: 添加帧头 `0x55AA`、版本号、计算校验和。
     *   **发送串口**: `55 AA 00 06 00 05 01 01 00 01 01 CS` -> MCU。
 
-### 3.3 场景三：设备状态上报 (如：用户按下物理按键)
+### 3.3 场景三：状态查询 (无 Payload 指令)
+1.  **Master**: 需要主动查询当前所有 DP 状态。
+2.  **Master -> Slave (IPC)**: 发送 `send_mcu` 消息，不带 payload。
+    *   JSON: `{"type": "send_mcu", "data": {"cmd": 8}}`
+    *   其中 `cmd=8` 为涂鸦协议的状态查询指令。
+3.  **Slave**:
+    *   解析发现无 payload，构造长度为 0 的串口帧。
+    *   **发送串口**: `55 AA 00 08 00 00 CS` -> MCU。
+4.  **MCU**: 收到查询后，通过 `0x07` 指令上报当前状态 (参考场景四)。
+
+### 3.4 场景四：设备状态上报 (如：用户按下物理按键)
 1.  **MCU -> Slave (UART)**: 发送状态上报帧 `55 AA 03 07 00 05 ... CS`。
 2.  **Slave**:
     *   检测帧头，接收完整数据包。

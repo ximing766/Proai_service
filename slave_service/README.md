@@ -2,6 +2,9 @@
 
 Slave Service 是运行在 AI 模组 (Linux) 上的硬件抽象层服务，负责管理与 MCU (座椅控制主板) 的串口通信，并通过 TCP Socket 暴露接口给主服务 (Master Service)。
 
+lsof -i :5555
+kill -9 114598
+
 ## 1. 目录结构
 
 ```
@@ -77,35 +80,57 @@ chmod +x slave_service
 Slave Service 监听 TCP 端口 `5555` (默认)。Master Service 作为 TCP Client 连接此端口。
 
 ### 4.1 通信协议 (IPC)
-协议头定义 (大端序):
+
+Master 与 Slave 之间使用 TCP 长连接进行通信，协议格式如下：
+
+**数据包结构 (Big Endian):**
 | 字段 | 长度 | 说明 |
 | :--- | :--- | :--- |
-| Magic | 2 Bytes | 固定 `0xA55A` |
-| Type | 1 Byte | 消息类型 |
-| Length | 2 Bytes | Payload 长度 |
-| Payload | N Bytes | 数据载荷 |
+| Length | 4 Bytes | 后续 JSON 数据的长度 (Network Byte Order) |
+| JSON Body | N Bytes | 具体的消息内容，JSON 格式字符串 |
 
 ### 4.2 消息类型
 
+所有消息的 JSON 根对象包含 `type` 和 `data` 两个字段。
+
 #### 1. 发送指令给 MCU (Master -> Slave)
-- **Type**: `0x02` (IPC_CMD_SEND_TO_MCU)
-- **Payload**: `[Cmd(1 Byte)] + [Data(N Bytes)]`
+- **Type**: `"send_mcu"`
+- **Data**:
+  - `cmd`: (Integer) 涂鸦串口协议命令字 (如 `6` 代表命令下发)
+  - `payload`: (String) 十六进制字符串，表示数据内容
+- **示例**:
+  ```json
+  {
+      "type": "send_mcu",
+      "data": {
+          "cmd": 6,
+          "payload": "0101000101"
+      }
+  }
+  ```
 - **说明**: 
-  - `Cmd` 为涂鸦串口协议命令字 (如 `0x06` 命令下发)。
-  - `Data` 为涂鸦协议的数据单元。
-  - Slave 收到后会自动封装帧头、校验和并发送给 MCU。
+  - Slave 收到后会将 `payload` 解析为二进制，封装帧头、校验和后通过串口发送给 MCU。
 
 #### 2. 收到 MCU 数据 (Slave -> Master)
-- **Type**: `0x03` (IPC_EVT_FROM_MCU)
-- **Payload**: `[Cmd(1 Byte)] + [Data(N Bytes)]`
+- **Type**: `"evt_mcu"`
+- **Data**:
+  - `cmd`: (Integer) 涂鸦串口协议命令字
+  - `payload`: (String) 十六进制字符串，表示数据内容
+- **示例**:
+  ```json
+  {
+      "type": "evt_mcu",
+      "data": {
+          "cmd": 7,
+          "payload": "0101000100"
+      }
+  }
+  ```
 - **说明**:
-  - Slave 收到 MCU 的完整帧后，剥离帧头和校验和，将核心数据透传给 Master。
-  - Master 需根据 `Cmd` (如 `0x07` 状态上报) 解析后续数据。
+  - 当 Slave 收到 MCU 的完整数据帧后，会解析出命令字和数据，以 JSON 格式推送给 Master。
 
-#### 3. 心跳保活 (Master <-> Slave)
-- **Type**: `0x01` (IPC_CMD_HEARTBEAT)
-- **Payload**: 空
-- **说明**: 用于维持 TCP 连接（可选，TCP本身有Keepalive）。
+#### 3. 其他消息
+- 目前协议主要支持上述两种透传消息，后续可扩展心跳或状态查询消息。
 
 ## 5. 常见问题排查
 
