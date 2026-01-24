@@ -5,7 +5,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#define LOG_DIR "LOG"
+#define LOG_DIR "log"
 #define MAX_LOG_SIZE (2 * 1024 * 1024) // 2MB
 
 static FILE *log_fp = NULL;

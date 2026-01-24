@@ -1,25 +1,23 @@
 CC = gcc
 CFLAGS = -Wall -Iinc
-LDFLAGS = -lm
+SRC = main.c src/utils.c src/cJSON.c src/tuya_protocol.c src/log.c src/md5.c src/ota_handler.c
+OBJ_DIR = obj
+OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC))
 TARGET = slave_service
-SRCDIR = src
-
-# Object files: main.o (from current dir) + others (from src dir)
-OBJS = main.o $(patsubst $(SRCDIR)/%.c, %.o, $(wildcard $(SRCDIR)/*.c))
 
 all: $(TARGET)
 
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
-	rm -f $(OBJS)
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
 
-# Compile main.c (in current directory)
-main.o: main.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# Compile other sources (in src directory)
-%.o: $(SRCDIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(TARGET) $(OBJS)
+	rm -rf $(OBJ_DIR)
+
+distclean: clean
+	rm -f $(TARGET)
+
+.PHONY: all clean distclean

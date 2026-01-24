@@ -11,15 +11,15 @@ def draw_architecture():
 
     # AI Module Cluster
     with dot.subgraph(name='cluster_ai_module') as c:
-        c.attr(label='AI Module (Linux)', style='rounded')
+        c.attr(label='AI Module', style='rounded')
         
         # Master Service (Simplified)
-        c.node('MasterService', 'Master Service\n(Python/Go/C++)', shape='box3d', style='filled', fillcolor='lightgrey')
+        c.node('MasterService', 'Master Service', shape='box3d', style='filled', fillcolor='lightgrey')
         
         # Slave Service
         with c.subgraph(name='cluster_slave') as s:
-            s.attr(label='Slave Service (C)', style='filled', color='lightblue')
-            s.node('SerialMgr', 'Serial Manager\n(UART /dev/ttySx)')
+            s.attr(label='Slave Service', style='filled', color='lightblue')
+            s.node('SerialMgr', 'Serial Manager')
             s.node('ProtoParser', 'Protocol Parser\n(Tuya)')
             s.node('IPC_Client', 'IPC Client\n(JSON Handler)')
             s.node('OTAMgr', 'OTA Dispatcher')
@@ -33,10 +33,10 @@ def draw_architecture():
         # Using a record node or label to show the interface details
         ipc_label = 'JSON over TCP (Port 5555)\n\n' \
                     'Interfaces:\n' \
-                    '1. heartbeat\n' \
-                    '2. send_mcu(cmd, payload)\n' \
-                    '3. evt_mcu(cmd, payload)\n' \
-                    '4. slave_status(code, msg)'
+                    '1. send_mcu(cmd, payload)\n' \
+                    '2. evt_mcu(cmd, payload)\n' \
+                    '3. send_slave(code, msg)\n' \
+                    '4. evt_slave(code, msg)'
         
         dot.edge('MasterService', 'IPC_Client', label=ipc_label, dir='both', penwidth='2.0')
 

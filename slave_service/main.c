@@ -13,6 +13,7 @@
 #include "inc/ipc_protocol.h"
 #include "inc/log.h"
 #include "inc/utils.h"
+#include "inc/ota_handler.h" // Added
 
 int uart_fd = -1;
 int server_fd = -1;
@@ -171,6 +172,22 @@ void process_ipc_msg(char *json_buf) {
             }
         }
     } 
+    // 场景 B: 控制指令 (send_slave) -> OTA
+    else if (strcmp(type_item->valuestring, IPC_TYPE_SEND_SLAVE) == 0) {
+        cJSON *data_item = cJSON_GetObjectItem(root, "data");
+        if (data_item) {
+            cJSON *cmd_item = cJSON_GetObjectItem(data_item, "cmd");
+            if (cmd_item && cmd_item->valueint == CMD_UPGRADE_START) {
+                cJSON *payload_item = cJSON_GetObjectItem(data_item, "payload");
+                const char *path = "/tmp/mcu_firmware.bin";
+                if (payload_item && cJSON_IsString(payload_item) && strlen(payload_item->valuestring) > 0) {
+                    // MYTODO: 预留payload路径支持
+                }
+                LOG_I("*** Received OTA Start Request ***");
+                ota_start(path);
+            }
+        }
+    }
 
     cJSON_Delete(root);
 }
@@ -186,10 +203,14 @@ void send_ipc_msg(const char *type, int cmd, const uint8_t *payload_data, int pa
     cJSON_AddNumberToObject(data, "cmd", cmd);
     
     if (payload_len > 0 && payload_data != NULL) {
-        char *hex_str = malloc(payload_len * 2 + 1);
-        bin2hex(payload_data, payload_len, hex_str);
-        cJSON_AddStringToObject(data, "payload", hex_str);
-        free(hex_str);
+        if (strcmp(type, IPC_TYPE_EVT_SLAVE) == 0) {
+             cJSON_AddStringToObject(data, "msg", (char*)payload_data);
+        } else {
+            char *hex_str = malloc(payload_len * 2 + 1);
+            bin2hex(payload_data, payload_len, hex_str);
+            cJSON_AddStringToObject(data, "payload", hex_str);
+            free(hex_str);
+        }
     }
     cJSON_AddItemToObject(root, "data", data);
 
@@ -206,6 +227,13 @@ void send_ipc_msg(const char *type, int cmd, const uint8_t *payload_data, int pa
 
 void handle_mcu_frame(tuya_parser_t *p) {
     LOG_I("Recv MCU Frame: Cmd=0x%02X Len=%d", p->cmd, p->data_len);
+    
+    // Check OTA first
+    if (is_ota_in_progress() && (p->cmd == CMD_UPGRADE_START || p->cmd == CMD_UPGRADE_TRANS)) {
+        ota_handle_mcu_msg(p->cmd, p->data_buf, p->data_len);
+        return; // Consume it
+    }
+
     send_ipc_msg(IPC_TYPE_EVT_MCU, p->cmd, p->data_buf, p->data_len);
 }
 
@@ -227,6 +255,8 @@ void init_system(int log_to_file) {
     LOG_I("Socket Server listening on port %d", IPC_PORT);
 
     tuya_parser_init(&parser);
+    
+    ota_init(uart_fd, send_ipc_msg);
 }
 
 void cleanup_system() {
@@ -235,4 +265,6 @@ void cleanup_system() {
     if (uart_fd > 0) close(uart_fd);
     log_close();
 }
+
+
 
