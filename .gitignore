@@ -1,0 +1,21 @@
+# Binaries
+slave_service/slave_service
+*.o
+*.so
+*.a
+
+# Object files
+slave_service/obj/
+
+# Logs
+*.log
+slave_service/log/
+
+# Python
+__pycache__/
+*.pyc
+
+# Temporary
+*.swp
+*.swo
+*~
