@@ -36,17 +36,6 @@ static void send_to_uart(uint8_t cmd, uint8_t *data, uint16_t len) {
 }
 
 static void notify_master(int code, const char *msg) {
-    // We use evt_slave to notify master
-    // Construct a simple JSON payload for now, or just use the callback if it supports it.
-    // The callback is generic (cmd, payload). We might need a special CMD for status.
-    // Let's use CMD=0xFF for status report or similar.
-    // Or better, use evt_slave type. But our callback is fixed signature.
-    // We will trust main.c to handle the type if we change the callback signature or 
-    // we just use the callback to send 'evt_slave' with a specific cmd.
-    
-    // Actually, looking at main.c, send_ipc_msg takes (type, cmd, payload, len).
-    // So we can pass IPC_TYPE_EVT_SLAVE.
-    
     if (g_send_ipc_cb) {
         // cmd = code, payload = msg
         g_send_ipc_cb(IPC_TYPE_EVT_SLAVE, code, (uint8_t*)msg, strlen(msg));
@@ -122,12 +111,7 @@ static void send_next_packet() {
     uint32_t remain = g_fw_len - g_current_offset;
     uint16_t chunk_len = (remain > PACKET_SIZE) ? PACKET_SIZE : remain;
 
-    // Payload: Offset (4 bytes BE) + Data
-    // Note: Tuya protocol usually requires Offset to be packet index or byte offset.
-    // Standard Tuya might differ, but assuming Byte Offset based on common sense or previous knowledge.
-    // If user says "Tuya Protocol Chapter 9", usually it's:
     // 0x0B: [Offset(4)] [Data(N)]
-    
     uint8_t *payload = malloc(4 + chunk_len);
     payload[0] = (g_current_offset >> 24) & 0xFF;
     payload[1] = (g_current_offset >> 16) & 0xFF;
@@ -138,18 +122,14 @@ static void send_next_packet() {
     send_to_uart(CMD_UPGRADE_TRANS, payload, 4 + chunk_len);
     free(payload);
     
-    // We increment offset AFTER receiving ACK usually. 
-    // But Tuya 0x0B usually expects us to wait for ACK.
-    // So we don't increment here. We wait for response.
+    // we don't increment offset here. We wait for response.
 }
 
 void ota_handle_mcu_msg(uint8_t cmd, const uint8_t *data, int len) {
     if (g_state == OTA_IDLE) return;
 
     if (cmd == CMD_UPGRADE_START) {
-        // MCU response to Start
-        // Data: 0x00 for success
-        if (len >= 1 && data[0] == 0x00) {
+        if (len >= 1 && data[0] == 0x00) {  // MYTODO: data: 00: 256B  01: 512B  02:1024B
             LOG_I("MCU Accepted Upgrade. Sending first packet...");
             g_state = OTA_SENDING;
             g_current_offset = 0;
@@ -162,8 +142,7 @@ void ota_handle_mcu_msg(uint8_t cmd, const uint8_t *data, int len) {
     } else if (cmd == CMD_UPGRADE_TRANS) {
         // MCU response to Data Packet
         // Data: 0x00 for success
-        if (len >= 1 && data[0] == 0x00) {
-            // Success, advance offset
+        if (len >= 1 && data[0] == 0x00) {       // MYTODO: 0B返回没有data字段
             uint32_t remain = g_fw_len - g_current_offset;
             uint16_t chunk_len = (remain > PACKET_SIZE) ? PACKET_SIZE : remain;
             g_current_offset += chunk_len;
