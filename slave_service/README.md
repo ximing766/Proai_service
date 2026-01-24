@@ -18,8 +18,6 @@ slave_service/
 
 ## 2. 编译指南
 
-本工程使用标准 GCC 工具链。
-
 ### 2.1 交叉编译 (针对 ARM Linux 模组)
 请修改 `Makefile` 中的 `CC` 变量为您 SDK 提供的交叉编译器，例如：
 ```makefile
@@ -31,48 +29,20 @@ make
 ```
 生成的可执行文件为 `slave_service`。
 
-### 2.2 本地测试编译 (x86/WSL)
-直接运行：
-```bash
-make
-```
-
 ## 3. 服务部署与启动
 
-### 3.1 手动运行
-将编译好的 `slave_service` 上传到模组 `/usr/bin/` 或 `/opt/proai/` 目录。
-```bash
-chmod +x slave_service
-./slave_service
-```
-*注意*: 默认串口设备为 `/dev/ttyS1`，如需修改请编辑 `main.c` 中的 `UART_DEV` 宏。
-
-### 3.2 开机自启动 (Systemd)
+### 3.1 开机自启动 (Systemd)
 
 1. 创建服务文件 `/etc/systemd/system/slave_service.service`:
-   ```ini
-   [Unit]
-   Description=ProAI Slave Service (UART Proxy)
-   After=network.target
-
-   [Service]
-   Type=simple
-   ExecStart=/opt/proai/slave_service
-   Restart=always
-   RestartSec=5
-   User=root
-   # 如果需要设置环境变量
-   # Environment=LD_LIBRARY_PATH=/usr/lib
-
-   [Install]
-   WantedBy=multi-user.target
-   ```
 
 2. 启用并启动服务:
    ```bash
-   systemctl daemon-reload
-   systemctl enable slave_service
-   systemctl start slave_service
+   sudo systemctl daemon-reload
+   sudo systemctl enable slave_service
+   sudo systemctl start slave_service
+   sudo systemctl status slave_service
+
+   sudo journalctl -u slave_service -f
    ```
 
 ## 4. 主从通信接口说明

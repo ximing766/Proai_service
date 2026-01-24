@@ -1,0 +1,1070 @@
+[2026-01-23 19:07:40] [INFO] UART opened successfully: /dev/ttyS1
+[2026-01-23 19:07:40] [INFO] Socket Server listening on port 5555
+[2026-01-23 19:07:40] [INFO] --- Running JSON Handling Test ---
+[2026-01-23 19:07:40] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:07:40] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:07:40] [INFO] --- JSON Test Finished ---
+[2026-01-23 19:07:40] [INFO] Entering Main Event Loop...
+[2026-01-23 19:10:38] [INFO] New Master connected
+[2026-01-23 19:10:38] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:38] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:38] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:38] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:39] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:39] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:39] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:39] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:39] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:39] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:39] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:39] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:40] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:40] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:40] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:40] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:40] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:40] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:40] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:40] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:41] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:41] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:41] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:41] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:41] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:41] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:41] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:41] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:42] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:42] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:42] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:42] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:42] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:42] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:42] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:42] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:43] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:43] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:43] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:43] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:43] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:43] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:43] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:43] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:44] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:44] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:44] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:44] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:44] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:44] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:44] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:44] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:45] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:45] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:45] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:45] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:45] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:45] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:45] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:45] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:46] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:46] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:46] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:46] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:46] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:46] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:46] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:46] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:47] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:47] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:47] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:47] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:47] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:47] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:47] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:47] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:48] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:48] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:48] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:48] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:48] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:48] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:48] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:48] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:49] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:49] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:49] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:49] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:49] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:49] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:49] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:49] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:50] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:50] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:50] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:50] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:50] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:50] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:50] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:50] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:51] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:51] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:51] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:51] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:51] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:51] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:51] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:51] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:52] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:52] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:52] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:52] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:52] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:52] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:52] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:52] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:53] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:53] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:53] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:53] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:53] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:53] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:53] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:53] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:54] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:54] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:54] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:54] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:54] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:54] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:54] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:54] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:55] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:55] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:55] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:55] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:55] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:55] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:55] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:55] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:56] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:56] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:56] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:56] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:56] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:56] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:56] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:56] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:57] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:57] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:57] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:57] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:57] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:57] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:57] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:57] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:58] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:58] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:58] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:58] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:58] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:58] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:58] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:58] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:59] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:59] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:59] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:59] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:10:59] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:10:59] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:10:59] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:10:59] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:00] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:00] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:00] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:00] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:00] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:00] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:00] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:00] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:01] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:01] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:01] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:01] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:01] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:01] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:01] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:01] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:02] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:02] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:02] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:02] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:02] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:02] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:02] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:02] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:03] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:03] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:03] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:03] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:03] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:03] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:03] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:03] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:04] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:04] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:04] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:04] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:04] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:04] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:04] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:04] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:05] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:05] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:05] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:05] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:05] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:05] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:05] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:05] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:06] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:06] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:06] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:06] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:06] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:06] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:06] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:06] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:07] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:07] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:07] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:07] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:07] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:07] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:07] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:07] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:08] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:08] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:08] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:08] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:08] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:08] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:08] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:08] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:09] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:09] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:09] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:09] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:09] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:09] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:09] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:09] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:10] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:10] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:10] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:10] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:10] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:10] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:10] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:10] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:11] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:11] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:11] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:11] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:11] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:11] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:11] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:11] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:12] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:12] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:12] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:12] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:12] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:12] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:12] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:12] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:13] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:13] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:13] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:13] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:13] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:13] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:13] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:13] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:14] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:14] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:14] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:14] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:14] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:14] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:14] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:14] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:15] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:15] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:15] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:15] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:15] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:15] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:15] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:15] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:16] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:16] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:16] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:16] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:16] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:16] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:16] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:16] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:17] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:17] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:17] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:17] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:17] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:17] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:17] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:17] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:18] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:18] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:18] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:18] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:18] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:18] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:18] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:18] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:19] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:19] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:19] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:19] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:19] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:19] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:19] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:19] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:20] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:20] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:20] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:20] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:20] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:20] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:20] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:20] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:21] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:21] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:21] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:21] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:21] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:21] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:21] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:21] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:22] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:22] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:22] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:22] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:22] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:22] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:22] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:22] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:23] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:23] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:23] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:23] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:23] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:23] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:23] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:23] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:24] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:24] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:24] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:24] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:24] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:24] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:24] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:24] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:25] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:25] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:25] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:25] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:25] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:25] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:25] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:25] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:26] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:26] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:26] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:26] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:26] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:26] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:26] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:26] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:27] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:27] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:27] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:27] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:27] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:27] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:27] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:27] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:28] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:28] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:28] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:28] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:28] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:28] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:28] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:28] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:29] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:29] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:29] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:29] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:29] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:29] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:29] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:29] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:30] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:30] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:30] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:30] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:30] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:30] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:30] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:30] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:31] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:31] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:31] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:31] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:31] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:31] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:31] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:31] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:32] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:32] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:32] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:32] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:32] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:32] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:32] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:32] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:33] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:33] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:33] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:33] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:33] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:33] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:33] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:33] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:34] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:34] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:34] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:34] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:34] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:34] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:34] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:34] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:35] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:35] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:35] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:35] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:35] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:35] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:36] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:36] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:36] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:36] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:36] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:36] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:36] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:36] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:37] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:37] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:37] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:37] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:37] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:37] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:37] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:37] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:38] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:38] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:38] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:38] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:38] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:38] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:38] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:38] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:39] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:39] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:39] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:39] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:39] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:39] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:39] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:39] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:40] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:40] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:40] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:40] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:40] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:40] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:40] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:40] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:41] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:41] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:41] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:41] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:41] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:41] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:41] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:41] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:42] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:42] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:42] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:42] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:42] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:42] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:42] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:42] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:43] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:43] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:43] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:43] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:43] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:43] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:43] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:43] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:44] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:44] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:44] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:44] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:44] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:44] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:44] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:44] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:45] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:45] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:45] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:45] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:45] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:45] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:45] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:45] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:46] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:46] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:46] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:46] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:46] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:46] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:46] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:46] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:47] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:47] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:47] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:47] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:47] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:47] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:47] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:47] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:48] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:48] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:48] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:48] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:48] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:48] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:48] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:48] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:49] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:49] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:49] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:49] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:49] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:49] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:49] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:49] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:50] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:50] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:50] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:50] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:50] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:50] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:50] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:50] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:51] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:51] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:51] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:51] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:51] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:51] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:51] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:51] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:52] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:52] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:52] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:52] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:52] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:52] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:52] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:52] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:53] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:53] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:53] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:53] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:53] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:53] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:53] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:53] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:54] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:54] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:54] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:54] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:54] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:54] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:54] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:54] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:55] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:55] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:55] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:55] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:55] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:55] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:55] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:55] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:56] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:56] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:56] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:56] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:56] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:56] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:56] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:56] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:57] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:57] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:57] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:57] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:57] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:57] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:57] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:57] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:58] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:58] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:58] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:58] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:58] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:58] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:58] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:58] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:59] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:59] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:59] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:59] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:11:59] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:11:59] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:11:59] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:11:59] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:00] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:00] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:00] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:00] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:00] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:00] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:00] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:00] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:01] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:01] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:01] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:01] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:01] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:01] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:01] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:01] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:02] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:02] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:02] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:02] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:02] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:02] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:02] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:02] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:03] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:03] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:03] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:03] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:03] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:03] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:03] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:03] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:04] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:04] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:04] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:04] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:04] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:04] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:04] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:04] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:05] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:05] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:05] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:05] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:05] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:05] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:05] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:05] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:06] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:06] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:06] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:06] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:06] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:06] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:06] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:06] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:07] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:07] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:07] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:07] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:07] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:07] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:07] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:07] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:08] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:08] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:08] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:08] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:08] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:08] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:08] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:08] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:09] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:09] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:09] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:09] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:09] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:09] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:09] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:09] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:10] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:10] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:10] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:10] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:10] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:10] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:10] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:10] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:11] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:11] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:11] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:11] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:11] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:11] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:11] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:11] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:12] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:12] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:12] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:12] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:12] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:12] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:12] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:12] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:13] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:13] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:13] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:13] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:13] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:13] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:13] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:13] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:14] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:14] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:14] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:14] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:14] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:14] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:14] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:14] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:15] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:15] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:15] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:15] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:15] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:15] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:15] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:15] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:16] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:16] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:16] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:16] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:16] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:16] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:16] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:16] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:17] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:17] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:17] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:17] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:17] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:17] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:17] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:17] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:18] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:18] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:18] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:18] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:18] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:18] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:18] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:18] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:19] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:19] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:19] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:19] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:19] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:19] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:19] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:19] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:20] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:20] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:20] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:20] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:20] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:20] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:20] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:20] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:21] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:21] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:21] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:21] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:21] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:21] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:21] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:21] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:22] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:22] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:22] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:22] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:22] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:22] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:22] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:22] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:23] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:23] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:23] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:23] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:23] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:23] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:23] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:23] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:24] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:24] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:24] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:24] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:24] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:24] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:24] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:24] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:25] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:25] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:25] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:25] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:25] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:25] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:25] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:25] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:26] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:26] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:26] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:26] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:26] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:26] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:26] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:26] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:27] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:27] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:27] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:27] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:27] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:27] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:27] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:27] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:28] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:28] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:28] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:28] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:28] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:28] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:28] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:28] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:29] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:29] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:29] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:29] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:29] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:29] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:29] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:29] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:30] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:30] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:30] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:30] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:30] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:30] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:30] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:30] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:31] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:31] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:31] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:31] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:31] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:31] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:31] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:31] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:32] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:32] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:32] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:32] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:32] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:32] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:32] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:32] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:33] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:33] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:33] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:33] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:33] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:33] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:33] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:33] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:34] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:34] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:34] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:34] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:34] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:34] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:34] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:34] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:35] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:35] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:35] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:35] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:35] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:35] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:35] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:35] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:36] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:36] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:36] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:36] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:36] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:36] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:36] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:36] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:37] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:37] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:37] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:37] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:37] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:37] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:37] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:37] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:38] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:38] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:38] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:38] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:38] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:38] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:38] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:38] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:39] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:39] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:39] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:39] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:39] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:39] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:39] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:39] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:40] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:40] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:40] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:40] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:40] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:40] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:40] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:40] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:41] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:41] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:41] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:41] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:41] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:41] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:41] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:41] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:42] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:42] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:42] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:42] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:42] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:42] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:43] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:43] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:43] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:43] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:43] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:43] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:43] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:43] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:44] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:44] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:44] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:44] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:44] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:44] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:44] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:44] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:45] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:45] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:45] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:45] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:45] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:45] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:45] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:45] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:46] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:46] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:46] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:46] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:46] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:46] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:46] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:46] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:47] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:47] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:47] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:47] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:47] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:47] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:47] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:47] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:48] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:48] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:48] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:48] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:48] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:48] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:48] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:48] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:49] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:49] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:49] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:49] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:49] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:49] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:49] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:49] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:50] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:50] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:50] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:50] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:50] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:50] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:50] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:50] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:51] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:51] [DEBG] UART TX: 55AA0006000501010001010E
+[2026-01-23 19:12:51] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 8}}
+[2026-01-23 19:12:51] [DEBG] UART TX: 55AA0008000007
+[2026-01-23 19:12:51] [DEBG] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
+[2026-01-23 19:12:51] [DEBG] UART TX: 55AA0006000501010001010E

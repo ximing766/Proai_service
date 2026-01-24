@@ -1,8 +1,0 @@
-[2026-01-22 23:44:46] [INFO] [main.c:226] UART opened successfully: /dev/ttyS1
-[2026-01-22 23:44:46] [INFO] [main.c:234] Socket Server listening on port 5555
-[2026-01-22 23:44:46] [INFO] [main.c:175] --- Running JSON Handling Test ---
-[2026-01-22 23:44:46] [DEBG] [main.c:180] Test Input: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
-[2026-01-22 23:44:46] [DEBG] [main.c:124] Recv JSON: {"type": "send_mcu", "data": {"cmd": 6, "payload": "0101000101"}}
-[2026-01-22 23:44:46] [DEBG] [main.c:160] Packed Frame: 55AA0006000501010001010E
-[2026-01-22 23:44:46] [INFO] [main.c:182] --- JSON Test Finished ---
-[2026-01-22 23:44:46] [INFO] [main.c:41] Entering Main Event Loop...

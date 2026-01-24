@@ -38,6 +38,7 @@ int main(int argc, char *argv[]) {
     test_json_handling();
     LOG_I("Entering Main Event Loop...");
     while (1) {
+        LOG_I("Main Event Loop Iteration");
         run_event_loop();
     }
     cleanup_system();

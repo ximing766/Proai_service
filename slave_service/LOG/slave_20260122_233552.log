@@ -1,2 +1,0 @@
-[2026-01-22 23:35:52] [INFO] [main.c:73] UART opened successfully: /dev/ttyS1
-[2026-01-22 23:35:52] [ERROR] [main.c:78] Failed to init socket server

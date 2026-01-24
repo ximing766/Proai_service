@@ -6,14 +6,43 @@
 #include <unistd.h>
 
 #define LOG_DIR "LOG"
+#define MAX_LOG_SIZE (1 * 1024 * 1024) // 1MB
+
 static FILE *log_fp = NULL;
 static int use_file = 0;
+
+static void open_new_log_file() {
+    time_t now = time(NULL);
+    struct tm *t = localtime(&now);
+    char filename[64];
+    sprintf(filename, "%s/slave_%04d%02d%02d_%02d%02d%02d.log", 
+            LOG_DIR,
+            t->tm_year + 1900, t->tm_mon + 1, t->tm_mday,
+            t->tm_hour, t->tm_min, t->tm_sec);
+
+    log_fp = fopen(filename, "a");
+    if (log_fp == NULL) {
+        perror("Failed to open log file");
+        use_file = 0;
+    } else {
+        printf("Log rotated/initialized. Output to: %s\n", filename);
+    }
+}
+
+static void check_log_rotation() {
+    if (!log_fp) return;
+    
+    long current_size = ftell(log_fp);
+    if (current_size >= MAX_LOG_SIZE) {
+        fclose(log_fp);
+        open_new_log_file();
+    }
+}
 
 void log_init(int to_file) {
     use_file = to_file;
     if (!use_file) return;
 
-    // 1. 确保 LOG 目录存在
     struct stat st = {0};
     if (stat(LOG_DIR, &st) == -1) {
         if (mkdir(LOG_DIR, 0755) != 0) {
@@ -23,23 +52,7 @@ void log_init(int to_file) {
         }
     }
 
-    // 2. 生成文件名: LOG/slave_YYYYMMDD_HHMMSS.log
-    time_t now = time(NULL);
-    struct tm *t = localtime(&now);
-    char filename[64];
-    sprintf(filename, "%s/slave_%04d%02d%02d_%02d%02d%02d.log", 
-            LOG_DIR,
-            t->tm_year + 1900, t->tm_mon + 1, t->tm_mday,
-            t->tm_hour, t->tm_min, t->tm_sec);
-
-    // 3. 打开文件
-    log_fp = fopen(filename, "a");
-    if (log_fp == NULL) {
-        perror("Failed to open log file");
-        use_file = 0;
-    } else {
-        printf("Log initialized. Output to: %s\n", filename);
-    }
+    open_new_log_file();
 }
 
 void log_close(void) {
@@ -50,13 +63,11 @@ void log_close(void) {
 }
 
 void log_write(LogLevel level, const char *fmt, ...) {
-    // 获取当前时间
     time_t now = time(NULL);
     struct tm *t = localtime(&now);
     char time_buf[32];
     strftime(time_buf, sizeof(time_buf), "%Y-%m-%d %H:%M:%S", t);
 
-    // 转换日志级别字符串
     const char *level_str;
     const char *color_start = "";
     const char *color_end = "\033[0m";
@@ -83,31 +94,27 @@ void log_write(LogLevel level, const char *fmt, ...) {
             break;
     }
 
-    // 准备输出流
-    FILE *out = (use_file && log_fp) ? log_fp : stdout;
-    if (level == LOG_LEVEL_ERROR && !use_file) {
-        out = stderr;
-    }
+    // 1. 终端输出 (始终开启，带颜色)
+    FILE *term_out = (level == LOG_LEVEL_ERROR) ? stderr : stdout;
+    va_list args_term;
+    va_start(args_term, fmt);
+    fprintf(term_out, "%s[%s] [%s] ", color_start, time_buf, level_str);
+    vfprintf(term_out, fmt, args_term);
+    fprintf(term_out, "%s\n", color_end);
+    fflush(term_out); // 强制刷新缓冲区，解决 journalctl 延迟问题
+    va_end(args_term);
 
-    // 组装日志信息
-    // 格式: [时间] [级别] 内容
-    // 文件输出时不带颜色，终端输出带颜色
-    
-    va_list args;
-    va_start(args, fmt);
-
+    // 2. 文件输出 (如果开启，无颜色)
     if (use_file && log_fp) {
-        // 文件输出 (无颜色)
+        va_list args_file;
+        va_start(args_file, fmt);
         fprintf(log_fp, "[%s] [%s] ", time_buf, level_str);
-        vfprintf(log_fp, fmt, args);
+        vfprintf(log_fp, fmt, args_file);
         fprintf(log_fp, "\n");
-        fflush(log_fp); // 确保立即写入磁盘
-    } else {
-        // 终端输出 (带颜色)
-        fprintf(out, "%s[%s] [%s] ", color_start, time_buf, level_str);
-        vfprintf(out, fmt, args);
-        fprintf(out, "%s\n", color_end);
-    }
+        fflush(log_fp);
+        va_end(args_file);
 
-    va_end(args);
+        // 检查是否需要轮转
+        check_log_rotation();
+    }
 }
