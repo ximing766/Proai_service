@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 #define LOG_DIR "LOG"
-#define MAX_LOG_SIZE (1 * 1024 * 1024) // 1MB
+#define MAX_LOG_SIZE (2 * 1024 * 1024) // 2MB
 
 static FILE *log_fp = NULL;
 static int use_file = 0;

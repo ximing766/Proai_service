@@ -25,7 +25,6 @@ void handle_mcu_frame(tuya_parser_t *p);
 void init_system(int log_to_file);
 void cleanup_system();
 void run_event_loop();
-void test_json_handling();
 
 // BM: main
 int main(int argc, char *argv[]) {
@@ -35,10 +34,8 @@ int main(int argc, char *argv[]) {
     }
     init_system(log_to_file);
 
-    test_json_handling();
     LOG_I("Entering Main Event Loop...");
     while (1) {
-        LOG_I("Main Event Loop Iteration");
         run_event_loop();
     }
     cleanup_system();
@@ -176,16 +173,6 @@ void process_ipc_msg(char *json_buf) {
     } 
 
     cJSON_Delete(root);
-}
-
-void test_json_handling() {
-    LOG_I("--- Running JSON Handling Test ---");
-    const char *test_json = "{\"type\": \"send_mcu\", \"data\": {\"cmd\": 6, \"payload\": \"0101000101\"}}";
-    char buf[256];
-    strncpy(buf, test_json, sizeof(buf));
-    
-    process_ipc_msg(buf);
-    LOG_I("--- JSON Test Finished ---");
 }
 
 // BM: Send JSON to Master
