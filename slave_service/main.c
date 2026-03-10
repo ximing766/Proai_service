@@ -27,12 +27,21 @@ void init_system(int log_to_file);
 void cleanup_system();
 void run_event_loop();
 
+void trigger_crash() {
+    LOG_I("Triggering intentional crash for GDB verification...");
+    volatile int *p = NULL;
+    *p = 42; // Segmentation Fault
+}
+
 // BM: main
 int main(int argc, char *argv[]) {
     int log_to_file = 0;
     if (argc > 1 && strcmp(argv[1], "-f") == 0) {
         log_to_file = 1;
     }
+    // Intentional crash for GDB testing
+    // trigger_crash();
+
     init_system(log_to_file);
 
     LOG_I("Entering Main Event Loop...");
@@ -204,7 +213,7 @@ void send_ipc_msg(const char *type, int cmd, const uint8_t *payload_data, int pa
     
     if (payload_len > 0 && payload_data != NULL) {
         if (strcmp(type, IPC_TYPE_EVT_SLAVE) == 0) {
-             cJSON_AddStringToObject(data, "msg", (char*)payload_data);
+             cJSON_AddStringToObject(data, "payload", (char*)payload_data);
         } else {
             char *hex_str = malloc(payload_len * 2 + 1);
             bin2hex(payload_data, payload_len, hex_str);
@@ -233,7 +242,7 @@ void handle_mcu_frame(tuya_parser_t *p) {
         ota_handle_mcu_msg(p->cmd, p->data_buf, p->data_len);
         return; // Consume it
     }
-
+    //MYTODO: IPC_TYPE_EVT_SLAVE branch
     send_ipc_msg(IPC_TYPE_EVT_MCU, p->cmd, p->data_buf, p->data_len);
 }
 

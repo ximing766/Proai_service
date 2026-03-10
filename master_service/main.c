@@ -56,21 +56,27 @@ int main() {
     LOG_I("Connected to Slave Service!");
 
     // 3. 循环发送测试
-    const char *msg_with_payload = "{\"type\": \"send_mcu\", \"data\": {\"cmd\": 6, \"payload\": \"0101000101\"}}";
+    char msg_with_payload[256];
     const char *msg_no_payload   = "{\"type\": \"send_mcu\", \"data\": {\"cmd\": 8}}"; // 状态查询，无payload
 
-    LOG_I("Starting loop test (Interval: 250ms)...");
+    LOG_I("Starting loop test (Interval: 20ms)...");
     
     int count = 0;
+    uint32_t payload_seq = 0;
+
     while (1) {
         if (count % 2 == 0) {
+            payload_seq++;
+            snprintf(msg_with_payload, sizeof(msg_with_payload), 
+                     "{\"type\": \"send_mcu\", \"data\": {\"cmd\": 6, \"payload\": \"%010u\"}}", 
+                     payload_seq);
             if (send_json(sock_fd, msg_with_payload) < 0) break;
         } else {
             if (send_json(sock_fd, msg_no_payload) < 0) break;
         }
         
         count++;
-        usleep(250000); // 休眠 250ms
+        usleep(20 * 1000); // 休眠 20ms
     }
 
     close(sock_fd);

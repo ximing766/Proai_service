@@ -35,10 +35,9 @@ static void send_to_uart(uint8_t cmd, uint8_t *data, uint16_t len) {
     }
 }
 
-static void notify_master(int code, const char *msg) {
+static void notify_master(int code, const char *payload) {
     if (g_send_ipc_cb) {
-        // cmd = code, payload = msg
-        g_send_ipc_cb(IPC_TYPE_EVT_SLAVE, code, (uint8_t*)msg, strlen(msg));
+        g_send_ipc_cb(IPC_TYPE_EVT_SLAVE, code, (uint8_t*)payload, strlen(payload));
     }
 }
 

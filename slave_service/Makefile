@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Iinc
+CFLAGS = -Wall -Iinc -g
 SRC = main.c src/utils.c src/cJSON.c src/tuya_protocol.c src/log.c src/md5.c src/ota_handler.c
 OBJ_DIR = obj
 OBJ = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRC))

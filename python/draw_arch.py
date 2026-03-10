@@ -35,8 +35,8 @@ def draw_architecture():
                     'Interfaces:\n' \
                     '1. send_mcu(cmd, payload)\n' \
                     '2. evt_mcu(cmd, payload)\n' \
-                    '3. send_slave(code, msg)\n' \
-                    '4. evt_slave(code, msg)'
+                    '3. send_slave(code, payload)\n' \
+                    '4. evt_slave(code, payload)'
         
         dot.edge('MasterService', 'IPC_Client', label=ipc_label, dir='both', penwidth='2.0')
 
