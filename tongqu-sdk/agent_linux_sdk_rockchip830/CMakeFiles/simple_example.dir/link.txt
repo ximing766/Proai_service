@@ -1,0 +1,1 @@
+/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-gcc --sysroot=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot CMakeFiles/simple_example.dir/examples/simple_example.c.o -o simple_example  libagent_sdk.a -lwebsockets -lcurl 

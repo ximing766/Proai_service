@@ -10,14 +10,14 @@ Slave Service 是运行在 AI 模组 (Linux) 上的硬件抽象层服务，负�
 
 ## 3. 服务部署与启动
 
-1. 复制服务文件: `sudo cp slave_service.service /etc/systemd/system/`
+1. 复制服务文件: `sudo cp aipro.service /etc/systemd/system/`
 2. 启用并启动:
    ```bash
    sudo systemctl daemon-reload
-   sudo systemctl enable slave_service
-   sudo systemctl start slave_service
+   sudo systemctl enable aipro
+   sudo systemctl start aipro
    ```
-3. 查看日志: `sudo journalctl -u slave_service -f`
+3. 查看日志: `sudo journalctl -u aipro -f`
 
 ## 4. 交互流程详解
 

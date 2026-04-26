@@ -1,0 +1,287 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:228 (message)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      The target system is: Linux -  - arm
+      The host system is: Linux - 6.6.87.2-microsoft-standard-WSL2 - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/3.28.3/CompilerIdC/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/CMakeScratch/TryCompile-lb4YG9"
+      binary: "/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/CMakeScratch/TryCompile-lb4YG9"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_SYSROOT: "/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/CMakeScratch/TryCompile-lb4YG9'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_da6d2/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_da6d2.dir/build.make CMakeFiles/cmTC_da6d2.dir/build
+        gmake[1]: Entering directory '/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/CMakeScratch/TryCompile-lb4YG9'
+        Building C object CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o
+        /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-gcc --sysroot=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot   -v -o CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-gcc
+        Target: arm-rockchip830-linux-uclibcgnueabihf
+        Configured with: /opt/.build/arm-rockchip830-linux-uclibcgnueabihf/src/gcc/configure --build=x86_64-build_pc-linux-gnu --host=x86_64-build_pc-linux-gnu --target=arm-rockchip830-linux-uclibcgnueabihf --prefix=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf --with-sysroot=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --enable-languages=c,c++ --with-arch=armv7-a --with-fpu=neon-vfpv4 --with-float=hard --with-pkgversion='crosstool-NG 1.24.0' --enable-__cxa_atexit --disable-libmudflap --disable-libgomp --disable-libssp --disable-libquadmath --disable-libquadmath-support --disable-libsanitizer --disable-libmpx --with-gmp=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-mpfr=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-mpc=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-isl=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --enable-lto --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --enable-threads=posix --enable-target-optspace --enable-plugin --enable-gold --disable-nls --disable-multilib --with-local-prefix=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --enable-long-long
+        Thread model: posix
+        gcc version 8.3.0 (crosstool-NG 1.24.0) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o' '-c'  '-mfloat-abi=hard' '-mfpu=neon-vfpv4' '-mtls-dialect=gnu' '-marm' '-march=armv7-a+neon-vfpv4'
+         /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/cc1 -quiet -v -iprefix /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/ -isysroot /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mfloat-abi=hard -mfpu=neon-vfpv4 -mtls-dialect=gnu -marm -march=armv7-a+neon-vfpv4 -auxbase-strip CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o -version -o /tmp/ccCQbY2b.s
+        GNU C17 (crosstool-NG 1.24.0) version 8.3.0 (arm-rockchip830-linux-uclibcgnueabihf)
+        	compiled by GNU C version 5.4.0 20160609, GMP version 6.1.2, MPFR version 4.0.2, MPC version 1.1.0, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring duplicate directory "/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/../../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include"
+        ignoring nonexistent directory "/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/include"
+        ignoring duplicate directory "/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/../../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include-fixed"
+        ignoring duplicate directory "/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/../../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include
+         /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include-fixed
+         /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/include
+         /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include
+        End of search list.
+        GNU C17 (crosstool-NG 1.24.0) version 8.3.0 (arm-rockchip830-linux-uclibcgnueabihf)
+        	compiled by GNU C version 5.4.0 20160609, GMP version 6.1.2, MPFR version 4.0.2, MPC version 1.1.0, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: e7661739e091f01943ce0a99456fb43a
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o' '-c'  '-mfloat-abi=hard' '-mfpu=neon-vfpv4' '-mtls-dialect=gnu' '-marm' '-march=armv7-a+neon-vfpv4'
+         /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/as -v -march=armv7-a -mfloat-abi=hard -mfpu=neon-vfpv4 -meabi=5 -o CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o /tmp/ccCQbY2b.s
+        GNU assembler version 2.32 (arm-rockchip830-linux-uclibcgnueabihf) using BFD version (crosstool-NG 1.24.0) 2.32
+        COMPILER_PATH=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/
+        LIBRARY_PATH=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/lib/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/lib/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o' '-c'  '-mfloat-abi=hard' '-mfpu=neon-vfpv4' '-mtls-dialect=gnu' '-marm' '-march=armv7-a+neon-vfpv4'
+        Linking C executable cmTC_da6d2
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_da6d2.dir/link.txt --verbose=1
+        /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-gcc --sysroot=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot  -v CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o -o cmTC_da6d2 
+        Using built-in specs.
+        COLLECT_GCC=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-gcc
+        COLLECT_LTO_WRAPPER=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/lto-wrapper
+        Target: arm-rockchip830-linux-uclibcgnueabihf
+        Configured with: /opt/.build/arm-rockchip830-linux-uclibcgnueabihf/src/gcc/configure --build=x86_64-build_pc-linux-gnu --host=x86_64-build_pc-linux-gnu --target=arm-rockchip830-linux-uclibcgnueabihf --prefix=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf --with-sysroot=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --enable-languages=c,c++ --with-arch=armv7-a --with-fpu=neon-vfpv4 --with-float=hard --with-pkgversion='crosstool-NG 1.24.0' --enable-__cxa_atexit --disable-libmudflap --disable-libgomp --disable-libssp --disable-libquadmath --disable-libquadmath-support --disable-libsanitizer --disable-libmpx --with-gmp=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-mpfr=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-mpc=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-isl=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --enable-lto --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --enable-threads=posix --enable-target-optspace --enable-plugin --enable-gold --disable-nls --disable-multilib --with-local-prefix=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --enable-long-long
+        Thread model: posix
+        gcc version 8.3.0 (crosstool-NG 1.24.0) 
+        COMPILER_PATH=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/
+        LIBRARY_PATH=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/lib/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/lib/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_da6d2'  '-mfloat-abi=hard' '-mfpu=neon-vfpv4' '-mtls-dialect=gnu' '-marm' '-march=armv7-a+neon-vfpv4'
+         /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/collect2 -plugin /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/liblto_plugin.so -plugin-opt=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPzYPuj.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --eh-frame-hdr -dynamic-linker /lib/ld-uClibc.so.0 -X -m armelf_linux_eabi -o cmTC_da6d2 /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/crt1.o /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/crti.o /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/crtbegin.o -L/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0 -L/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc -L/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/lib -L/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/lib -L/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/crtend.o /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_da6d2'  '-mfloat-abi=hard' '-mfpu=neon-vfpv4' '-mtls-dialect=gnu' '-marm' '-march=armv7-a+neon-vfpv4'
+        gmake[1]: Leaving directory '/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/CMakeScratch/TryCompile-lb4YG9'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include]
+          add: [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include-fixed]
+          add: [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/include]
+          add: [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include]
+        end of search list found
+        collapse include dir [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include] ==> [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include]
+        collapse include dir [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include-fixed] ==> [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include-fixed]
+        collapse include dir [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/include] ==> [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/include]
+        collapse include dir [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include] ==> [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include]
+        implicit include dirs: [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include;/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include-fixed;/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/include;/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(arm-rockchip830-linux-uclibcgnueabihf-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/CMakeScratch/TryCompile-lb4YG9']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_da6d2/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_da6d2.dir/build.make CMakeFiles/cmTC_da6d2.dir/build]
+        ignore line: [gmake[1]: Entering directory '/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/CMakeScratch/TryCompile-lb4YG9']
+        ignore line: [Building C object CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-gcc --sysroot=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot   -v -o CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-gcc]
+        ignore line: [Target: arm-rockchip830-linux-uclibcgnueabihf]
+        ignore line: [Configured with: /opt/.build/arm-rockchip830-linux-uclibcgnueabihf/src/gcc/configure --build=x86_64-build_pc-linux-gnu --host=x86_64-build_pc-linux-gnu --target=arm-rockchip830-linux-uclibcgnueabihf --prefix=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf --with-sysroot=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --enable-languages=c c++ --with-arch=armv7-a --with-fpu=neon-vfpv4 --with-float=hard --with-pkgversion='crosstool-NG 1.24.0' --enable-__cxa_atexit --disable-libmudflap --disable-libgomp --disable-libssp --disable-libquadmath --disable-libquadmath-support --disable-libsanitizer --disable-libmpx --with-gmp=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-mpfr=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-mpc=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-isl=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --enable-lto --with-host-libstdcxx='-static-libgcc -Wl -Bstatic -lstdc++ -Bdynamic -lm' --enable-threads=posix --enable-target-optspace --enable-plugin --enable-gold --disable-nls --disable-multilib --with-local-prefix=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --enable-long-long]
+        ignore line: [Thread model: posix]
+        ignore line: [gcc version 8.3.0 (crosstool-NG 1.24.0) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o' '-c'  '-mfloat-abi=hard' '-mfpu=neon-vfpv4' '-mtls-dialect=gnu' '-marm' '-march=armv7-a+neon-vfpv4']
+        ignore line: [ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/cc1 -quiet -v -iprefix /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/ -isysroot /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mfloat-abi=hard -mfpu=neon-vfpv4 -mtls-dialect=gnu -marm -march=armv7-a+neon-vfpv4 -auxbase-strip CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o -version -o /tmp/ccCQbY2b.s]
+        ignore line: [GNU C17 (crosstool-NG 1.24.0) version 8.3.0 (arm-rockchip830-linux-uclibcgnueabihf)]
+        ignore line: [	compiled by GNU C version 5.4.0 20160609  GMP version 6.1.2  MPFR version 4.0.2  MPC version 1.1.0  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring duplicate directory "/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/../../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include"]
+        ignore line: [ignoring nonexistent directory "/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/include"]
+        ignore line: [ignoring duplicate directory "/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/../../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include-fixed"]
+        ignore line: [ignoring duplicate directory "/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/../../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include]
+        ignore line: [ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include-fixed]
+        ignore line: [ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/include]
+        ignore line: [ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C17 (crosstool-NG 1.24.0) version 8.3.0 (arm-rockchip830-linux-uclibcgnueabihf)]
+        ignore line: [	compiled by GNU C version 5.4.0 20160609  GMP version 6.1.2  MPFR version 4.0.2  MPC version 1.1.0  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: e7661739e091f01943ce0a99456fb43a]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o' '-c'  '-mfloat-abi=hard' '-mfpu=neon-vfpv4' '-mtls-dialect=gnu' '-marm' '-march=armv7-a+neon-vfpv4']
+        ignore line: [ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/as -v -march=armv7-a -mfloat-abi=hard -mfpu=neon-vfpv4 -meabi=5 -o CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o /tmp/ccCQbY2b.s]
+        ignore line: [GNU assembler version 2.32 (arm-rockchip830-linux-uclibcgnueabihf) using BFD version (crosstool-NG 1.24.0) 2.32]
+        ignore line: [COMPILER_PATH=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/]
+        ignore line: [LIBRARY_PATH=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/lib/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/lib/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o' '-c'  '-mfloat-abi=hard' '-mfpu=neon-vfpv4' '-mtls-dialect=gnu' '-marm' '-march=armv7-a+neon-vfpv4']
+        ignore line: [Linking C executable cmTC_da6d2]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_da6d2.dir/link.txt --verbose=1]
+        ignore line: [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-gcc --sysroot=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot  -v CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o -o cmTC_da6d2 ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-gcc]
+        ignore line: [COLLECT_LTO_WRAPPER=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/lto-wrapper]
+        ignore line: [Target: arm-rockchip830-linux-uclibcgnueabihf]
+        ignore line: [Configured with: /opt/.build/arm-rockchip830-linux-uclibcgnueabihf/src/gcc/configure --build=x86_64-build_pc-linux-gnu --host=x86_64-build_pc-linux-gnu --target=arm-rockchip830-linux-uclibcgnueabihf --prefix=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf --with-sysroot=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --enable-languages=c c++ --with-arch=armv7-a --with-fpu=neon-vfpv4 --with-float=hard --with-pkgversion='crosstool-NG 1.24.0' --enable-__cxa_atexit --disable-libmudflap --disable-libgomp --disable-libssp --disable-libquadmath --disable-libquadmath-support --disable-libsanitizer --disable-libmpx --with-gmp=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-mpfr=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-mpc=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --with-isl=/opt/.build/arm-rockchip830-linux-uclibcgnueabihf/buildtools --enable-lto --with-host-libstdcxx='-static-libgcc -Wl -Bstatic -lstdc++ -Bdynamic -lm' --enable-threads=posix --enable-target-optspace --enable-plugin --enable-gold --disable-nls --disable-multilib --with-local-prefix=/opt/x-tool/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --enable-long-long]
+        ignore line: [Thread model: posix]
+        ignore line: [gcc version 8.3.0 (crosstool-NG 1.24.0) ]
+        ignore line: [COMPILER_PATH=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/bin/]
+        ignore line: [LIBRARY_PATH=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/lib/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/lib/:/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_da6d2'  '-mfloat-abi=hard' '-mfpu=neon-vfpv4' '-mtls-dialect=gnu' '-marm' '-march=armv7-a+neon-vfpv4']
+        link line: [ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/collect2 -plugin /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/liblto_plugin.so -plugin-opt=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPzYPuj.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot --eh-frame-hdr -dynamic-linker /lib/ld-uClibc.so.0 -X -m armelf_linux_eabi -o cmTC_da6d2 /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/crt1.o /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/crti.o /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/crtbegin.o -L/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0 -L/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc -L/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/lib -L/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/lib -L/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/crtend.o /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/crtn.o]
+          arg [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../libexec/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccPzYPuj.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [--sysroot=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib/ld-uClibc.so.0] ==> ignore
+          arg [-X] ==> ignore
+          arg [-m] ==> ignore
+          arg [armelf_linux_eabi] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_da6d2] ==> ignore
+          arg [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/crt1.o] ==> obj [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/crt1.o]
+          arg [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/crti.o] ==> obj [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/crti.o]
+          arg [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/crtbegin.o] ==> obj [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/crtbegin.o]
+          arg [-L/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0] ==> dir [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0]
+          arg [-L/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc] ==> dir [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc]
+          arg [-L/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/lib] ==> dir [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/lib]
+          arg [-L/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/lib] ==> dir [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/lib]
+          arg [-L/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib] ==> dir [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib]
+          arg [CMakeFiles/cmTC_da6d2.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--no-as-needed] ==> ignore
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--no-as-needed] ==> ignore
+          arg [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/crtend.o] ==> obj [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/crtend.o]
+          arg [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/crtn.o] ==> obj [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/crtn.o]
+        collapse obj [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/crtbegin.o] ==> [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/crtbegin.o]
+        collapse obj [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/crtend.o] ==> [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/crtend.o]
+        collapse library dir [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0] ==> [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0]
+        collapse library dir [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc] ==> [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/lib/gcc]
+        collapse library dir [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/../lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/../../../../arm-rockchip830-linux-uclibcgnueabihf/lib] ==> [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/lib]
+        collapse library dir [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/lib] ==> [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/lib]
+        collapse library dir [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib] ==> [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib]
+        implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+        implicit objs: [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/crt1.o;/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/crti.o;/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/crtbegin.o;/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/crtend.o;/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib/crtn.o]
+        implicit dirs: [/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0;/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/lib/gcc;/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/lib;/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/lib;/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "CMakeLists.txt:12 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/CMakeScratch/TryCompile-94qxL6"
+      binary: "/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/CMakeScratch/TryCompile-94qxL6"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+      CMAKE_SYSROOT: "/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/CMakeScratch/TryCompile-94qxL6'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_abc6d/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_abc6d.dir/build.make CMakeFiles/cmTC_abc6d.dir/build
+        gmake[1]: Entering directory '/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/CMakeScratch/TryCompile-94qxL6'
+        Building C object CMakeFiles/cmTC_abc6d.dir/src.c.o
+        /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-gcc --sysroot=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot -DCMAKE_HAVE_LIBC_PTHREAD  -std=gnu11 -fPIE -o CMakeFiles/cmTC_abc6d.dir/src.c.o -c /mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/CMakeScratch/TryCompile-94qxL6/src.c
+        Linking C executable cmTC_abc6d
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_abc6d.dir/link.txt --verbose=1
+        /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/bin/arm-rockchip830-linux-uclibcgnueabihf-gcc --sysroot=/mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot CMakeFiles/cmTC_abc6d.dir/src.c.o -o cmTC_abc6d 
+        gmake[1]: Leaving directory '/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/CMakeScratch/TryCompile-94qxL6'
+        
+      exitCode: 0
+...

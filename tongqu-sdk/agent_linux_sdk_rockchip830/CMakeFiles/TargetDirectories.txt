@@ -1,0 +1,11 @@
+/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/agent_sdk_static.dir
+/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/agent_sdk_shared.dir
+/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/simple_example.dir
+/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/full_example.dir
+/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/reconnect_example.dir
+/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/edit_cache.dir
+/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/rebuild_cache.dir
+/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/list_install_components.dir
+/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/install.dir
+/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/install/local.dir
+/mnt/d/demo/Demotongqu/docs/Cross/compilation/build/agent_linux_sdk_rockchip830/CMakeFiles/install/strip.dir

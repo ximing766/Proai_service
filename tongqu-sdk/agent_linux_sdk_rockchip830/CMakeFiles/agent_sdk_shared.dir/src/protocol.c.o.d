@@ -1,0 +1,24 @@
+CMakeFiles/agent_sdk_shared.dir/src/protocol.c.o: \
+ /mnt/d/demo/Demotongqu/docs/agent_linux_sdk/src/protocol.c \
+ /mnt/d/demo/Demotongqu/docs/agent_linux_sdk/src/protocol.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include/stddef.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/stdio.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/features.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/bits/uClibc_config.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/sys/cdefs.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/bits/types.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/bits/wordsize.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/bits/typesizes.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/bits/uClibc_stdio.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/wchar.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/bits/wchar.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/bits/pthreadtypes.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/endian.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/bits/endian.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/byteswap.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/bits/byteswap.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/bits/byteswap-common.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/bits/byteswap-16.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/lib/gcc/arm-rockchip830-linux-uclibcgnueabihf/8.3.0/include/stdarg.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/bits/stdio_lim.h \
+ /mnt/d/demo/Demotongqu/docs/Cross/toolchains/arm-rockchip830-linux-uclibcgnueabihf/arm-rockchip830-linux-uclibcgnueabihf/sysroot/usr/include/string.h

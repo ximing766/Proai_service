@@ -21,3 +21,6 @@ __pycache__/
 *~
 
 id_rsa
+gcc/
+**/build/**
+.vscode/
