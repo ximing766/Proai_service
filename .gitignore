@@ -23,4 +23,7 @@ __pycache__/
 id_rsa
 gcc/
 **/build/**
+**/build_arm/**
+toolchain/
+tongqu-sdk/
 .vscode/
