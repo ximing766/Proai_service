@@ -78,6 +78,22 @@ typedef struct AgentDeviceTokenResult {
     char m_device_id[AGENT_DEVICE_ID_MAX_LENGTH + 1];
 } AgentDeviceTokenResult;
 
+/*
+- `ws_url`：语音服务 WebSocket 地址
+- `device_id`：设备唯一标识
+- `client_id`：客户端标识
+- `authorization`：鉴权头，通常为 `Bearer <token>`
+- `agent_id`：可选，通常由服务端根据设备自动绑定
+- `user_id`：可选，设备正式接入时建议留空
+- `tts_tone_id`：可选
+- `audio_format`：推荐 `pcm`
+- `sample_rate`：推荐 `16000`
+- `channels`：推荐 `1`
+- `frame_duration_ms`：推荐 `20`
+- `feature_iot`：是否启用 IOT 能力
+- `feature_speaker`：是否启用说话人能力
+- `feature_mcp`：是否启用 MCP 能力
+*/
 typedef struct AgentConfig {
     const char *ws_url;
     const char *device_id;

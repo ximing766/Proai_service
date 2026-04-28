@@ -46,13 +46,13 @@ void init_system(int log_to_file) {
 
     LOG_I("System Starting...");
 
-    // 初始化云端大模型连接 (封装了Agent SDK)
-    // 注意：这里使用硬编码的 device_id, client_id, auth_token 作为演示
-    const char *test_device_id = "test-device-arm71";
-    const char *test_client_id = "proai-linux-client";
-    const char *test_token = "Bearer test_token_xyz";
+    // 使用官方提供的公网测试设备凭据
+    // 这些凭据定义在 tongqu-sdk/readme.txt 中，专门用于快速验证
+    const char *test_device_id = "0001";
+    const char *test_device_secret = "K2JJTF9SWL4NWWK28DRP7W9YAX4FSRAQ";
     
-    if (cloud_llm_init(test_device_id, test_client_id, test_token) != 0) {
+    // 初始化云端大模型连接 (封装了Agent SDK)
+    if (cloud_llm_init(test_device_id, test_device_secret) != 0) {
         LOG_W("Failed to init AI Platform");
     }
 }

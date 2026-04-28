@@ -4,18 +4,60 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+#include <dirent.h>
+#include <stdlib.h>
 
 #define LOG_DIR "log"
 #define MAX_LOG_SIZE (2 * 1024 * 1024) // 2MB
+#define MAX_LOG_FILES 5
 
 static FILE *log_fp = NULL;
 static int use_file = 0;
+
+static int cmpstringp(const void *p1, const void *p2) {
+    return strcmp(* (char * const *) p1, * (char * const *) p2);
+}
+
+static void rotate_logs() {
+    DIR *dir = opendir(LOG_DIR);
+    if (!dir) return;
+
+    struct dirent *ent;
+    char *files[64];
+    int count = 0;
+
+    // 读取所有的 proai_*.log 文件
+    while ((ent = readdir(dir)) != NULL) {
+        if (strncmp(ent->d_name, "proai_", 6) == 0 && strstr(ent->d_name, ".log") != NULL) {
+            if (count < 64) {
+                files[count++] = strdup(ent->d_name);
+            }
+        }
+    }
+    closedir(dir);
+
+    // 如果文件数量达到或超过限制，按文件名（即时间）排序并删除最旧的
+    if (count >= MAX_LOG_FILES) {
+        qsort(files, count, sizeof(char *), cmpstringp);
+        for (int i = 0; i <= count - MAX_LOG_FILES; i++) {
+            char path[128];
+            snprintf(path, sizeof(path), "%s/%s", LOG_DIR, files[i]);
+            remove(path);
+        }
+    }
+
+    for (int i = 0; i < count; i++) {
+        free(files[i]);
+    }
+}
 
 static void open_new_log_file() {
     time_t now = time(NULL);
     struct tm *t = localtime(&now);
     char filename[64];
-    sprintf(filename, "%s/slave_%04d%02d%02d_%02d%02d%02d.log", 
+    sprintf(filename, "%s/proai_%04d%02d%02d_%02d%02d%02d.log", 
             LOG_DIR,
             t->tm_year + 1900, t->tm_mon + 1, t->tm_mday,
             t->tm_hour, t->tm_min, t->tm_sec);
@@ -25,7 +67,7 @@ static void open_new_log_file() {
         perror("Failed to open log file");
         use_file = 0;
     } else {
-        printf("Log rotated/initialized. Output to: %s\n", filename);
+        printf("Log initialized. Output to: %s\n", filename);
     }
 }
 
@@ -35,6 +77,7 @@ static void check_log_rotation() {
     long current_size = ftell(log_fp);
     if (current_size >= MAX_LOG_SIZE) {
         fclose(log_fp);
+        rotate_logs();
         open_new_log_file();
     }
 }
@@ -52,6 +95,7 @@ void log_init(int to_file) {
         }
     }
 
+    rotate_logs(); // 启动时清理多余的历史日志文件
     open_new_log_file();
 }
 

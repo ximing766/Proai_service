@@ -25,7 +25,9 @@ set(SOURCES
     src/cloud_tuya.c
 )
 
-# 添加 Tongqu SDK 和运行时的库路径
+# 添加 Tongqu SDK 开发库路径（用于链接阶段查找 libagent_sdk.so）
+link_directories(${CMAKE_SOURCE_DIR}/../tongqu-sdk/agent_linux_sdk_rockchip830)
+# 添加 Tongqu SDK 运行时依赖的第三方库路径
 link_directories(${CMAKE_SOURCE_DIR}/../tongqu-sdk/rockchip830_runtime_bundle/lib)
 
 # 生成可执行文件
