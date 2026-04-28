@@ -55,6 +55,7 @@ void init_system(int log_to_file) {
     if (cloud_llm_init(test_device_id, test_device_secret) != 0) {
         LOG_W("Failed to init AI Platform");
     }
+    
 }
 
 // 系统清理
