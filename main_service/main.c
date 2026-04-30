@@ -97,8 +97,9 @@ void run_event_loop() {
         // 每 60 秒发送一次文本测试请求
         static int test_counter = 0;
         test_counter++;
-        if (test_counter >= 60) {
-            LOG_I("Testing AI Platform: Sending Text Message...");
+        if (test_counter >= 15) {
+            cloud_llm_send_json("{\"type\":\"iot\",\"descriptors\":[{\"device\":\"demo_light\",\"method\":\"turn_on\",\"description\":\"Turn on the demo light\",\"parameters\":{\"power\":\"bool\"}}]}");
+            sleep(1);
             cloud_llm_send_text("你好，请介绍一下你自己。");
             test_counter = 0;
         }
@@ -112,8 +113,8 @@ void init_system(int log_to_file, LogLevel log_level) {
 
     LOG_I("System Starting...");
 
-    // 0. 初始化系统消息队列 (容量 64)
-    if (msg_queue_init(&g_sys_queue, 64) != 0) {
+    // 0. 初始化系统消息队列 (容量 16)
+    if (msg_queue_init(&g_sys_queue, 16) != 0) {
         LOG_E("Failed to init message queue");
         exit(1);
     }
@@ -165,6 +166,10 @@ int init_uart(const char *dev) {
 }
 
 void tuya_send_cmd(uint8_t cmd, uint8_t *data, uint16_t len) {
+    if (len > 256) {
+        LOG_E("tuya_send_cmd payload too large: %d", len);
+        return;
+    }
     uint8_t tx_buf[512];
     int tx_len = tuya_pack_frame(cmd, data, len, tx_buf);
     if (g_uart_fd > 0) {

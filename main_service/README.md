@@ -34,6 +34,14 @@
   - 控制流进入系统队列统一调度
   - 音频流走旁路，不进入主控指令队列，防止阻塞
 
+# 2. some CLI
+ssh root@192.168.1.7
+
+export AGENT_WS_URL="wss://tongqu.zworker.online/ws/v1/chat"
+export AGENT_DEVICE_ID="0001"
+export AGENT_DEVICE_SECRET="K2JJTF9SWL4NWWK28DRP7W9YAX4FSRAQ"
+
+
 ## 3. 线程与并发模型
 
 ### 3.1 线程职责

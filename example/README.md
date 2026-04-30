@@ -90,14 +90,16 @@ gcc -O2 -o device_voice_example device_voice_example.c \
 ### 5.1 公网 `wss`，固定 5 秒录音
 
 ```bash
+export AGENT_CA_BUNDLE=/root/workspace/proai/cacert.pem
+
 export LD_LIBRARY_PATH=/usr/lib:${LD_LIBRARY_PATH}
 export AGENT_CA_BUNDLE=/root/ca-certificates.crt
 export SSL_CERT_FILE=${AGENT_CA_BUNDLE}
 export CURL_CA_BUNDLE=${AGENT_CA_BUNDLE}
-export AGENT_WS_URL=wss://example.com/ws/v1/chat
-export AGENT_API_BASE_URL=https://example.com
-export AGENT_DEVICE_ID=<device_id>
-export AGENT_DEVICE_SECRET=<device_secret>
+export AGENT_WS_URL=wss://tongqu.zworker.online/ws/v1/chat
+export AGENT_API_BASE_URL=https://tongqu.zworker.online
+export AGENT_DEVICE_ID=0001
+export AGENT_DEVICE_SECRET=K2JJTF9SWL4NWWK28DRP7W9YAX4FSRAQ
 export AGENT_ALSA_CAPTURE=1
 export AGENT_RECORD_SECONDS=5
 export AGENT_ALSA_CAPTURE_DEVICE=default

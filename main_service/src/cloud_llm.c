@@ -1,33 +1,63 @@
 #include "../inc/cloud_llm.h"
 #include "../inc/log.h"
-#include "../inc/queue.h"
 #include "../inc/audio_module.h"
-#include "../inc/tuya_protocol.h"
+#include "../inc/cJSON.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 static AgentClient *g_agent_client = NULL;
 
-static void on_message(const char *msg, void *user_data) {
-    LOG_I("AI Platform Message Recv: %s", msg);
-    
-    // 解析下行指令并推入系统队列
-    // 为了演示，这里假设所有从 AI 平台来的指令都打包成 CMD_DP_SEND
-    // 实际项目中您需要解析 JSON (如使用 cJSON) 并提取真正的 DP 状态
-    
-    if (msg != NULL && strstr(msg, "assistant_response") != NULL) {
-        SystemMsg s_msg;
-        s_msg.type = MSG_TYPE_AI_CMD;
-        s_msg.cmd = CMD_DP_SEND; // 假设这是一个控制指令
-        s_msg.len = strlen(msg);
-        s_msg.data = (uint8_t *)malloc(s_msg.len + 1);
-        if (s_msg.data) {
-            memcpy(s_msg.data, msg, s_msg.len);
-            s_msg.data[s_msg.len] = '\0';
-            msg_queue_push(&g_sys_queue, &s_msg);
-        }
+static const char *json_get_string_or_default(const cJSON *obj, const char *key, const char *def_val) {
+    const cJSON *item = cJSON_GetObjectItemCaseSensitive(obj, key);
+    if (cJSON_IsString(item) && item->valuestring != NULL) {
+        return item->valuestring;
     }
+    return def_val;
+}
+
+static int json_get_int_or_default(const cJSON *obj, const char *key, int def_val) {
+    const cJSON *item = cJSON_GetObjectItemCaseSensitive(obj, key);
+    if (cJSON_IsNumber(item)) {
+        return item->valueint;
+    }
+    return def_val;
+}
+
+static void on_message(const char *msg, void *user_data) {
+    (void)user_data;
+    if (msg == NULL) {
+        LOG_W("AI Platform Message Recv: null");
+        return;
+    }
+
+    cJSON *root = cJSON_Parse(msg);
+    if (root == NULL) {
+        LOG_W("AI Platform Message Recv (non-json): %s", msg);
+        return;
+    }
+
+    const char *type = json_get_string_or_default(root, "type", "");
+    if (strcmp(type, "assistant_response") == 0) {
+        const char *text = json_get_string_or_default(root, "text", "");
+        const char *asr_text = json_get_string_or_default(root, "asr_text", "");
+        int tts_bytes = json_get_int_or_default(root, "tts_bytes_length", 0);
+        LOG_I("AI Assistant Text: %s", text);
+        LOG_D("AI Assistant Meta: asr_text='%s', tts_bytes_length=%d", asr_text, tts_bytes);
+    } else if (strcmp(type, "error") == 0) {
+        const char *message = json_get_string_or_default(root, "message", "unknown");
+        LOG_E("AI Platform Error Message: %s", message);
+    } else if (strcmp(type, "iot") == 0) {
+        const char *event = json_get_string_or_default(root, "event", "");
+        const char *session_id = json_get_string_or_default(root, "session_id", "");
+        int descriptor_count = json_get_int_or_default(root, "descriptor_count", -1);
+        LOG_I("AI IOT Event: event=%s, descriptor_count=%d, session_id=%s",
+              event, descriptor_count, session_id);
+    } else {
+        LOG_I("AI Platform Message Recv (type=%s)", type[0] ? type : "unknown");
+    }
+
+    cJSON_Delete(root);
 }
 
 static void on_audio(const unsigned char *audio_data, size_t audio_size, void *user_data) {
