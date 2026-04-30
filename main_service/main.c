@@ -22,9 +22,9 @@ void tuya_send_cmd(uint8_t cmd, uint8_t *data, uint16_t len);
 
 // 主函数
 int main(int argc, char *argv[]) {
-    int log_to_file = 0;
-    if (argc > 1 && strcmp(argv[1], "-f") == 0) {
-        log_to_file = 1;
+    int log_to_file = 1; // 默认开启文件日志
+    if (argc > 1 && strcmp(argv[1], "-s") == 0) { // 如果传入 -s 则仅输出到终端 (stdout)
+        log_to_file = 0;
     }
 
     init_system(log_to_file);
@@ -40,17 +40,28 @@ int main(int argc, char *argv[]) {
 
 // 主事件循环
 void run_event_loop() {
+    static int loop_count = 0;
     sleep(15);
+    loop_count++;
 
     // 每 15 秒发送一次心跳包
     LOG_I("Send Heartbeat to MCU...");
     tuya_send_cmd(CMD_HEARTBEAT, NULL, 0);
 
-    // 模拟测试发送AI指令 (每 60 秒)
-    static int count = 0;
-    if (++count % 4 == 0) {
+    LOG_I("Testing AI Platform: Sending Text Message...");
+    cloud_llm_send_text("你好，请介绍一下你自己。");
+
+
+    // 每 45 秒进行一次 JSON/IOT 测试 (每 3 次心跳)
+    if (loop_count % 3 == 0) {
+        LOG_I("Testing AI Platform: Sending JSON IOT Descriptor...");
+        const char *iot_json = "{\"type\":\"iot\",\"descriptors\":[{\"device\":\"heater_001\",\"method\":\"set_temperature\",\"description\":\"Set heater temperature\",\"parameters\":{\"temp\":\"int\"}}]}";
+        cloud_llm_send_json(iot_json);
+    }
+
+    // 模拟测试发送指令到 MCU (每 60 秒)
+    if (loop_count % 4 == 0) {
         LOG_I("Mock AI Command: Sending DP Command to MCU...");
-        // 假设AI云端要打开加热（DP1 = true）
         uint8_t dp_data[] = {0x01, 0x01, 0x00, 0x01, 0x01}; 
         tuya_send_cmd(CMD_DP_SEND, dp_data, sizeof(dp_data));
     }
@@ -59,6 +70,7 @@ void run_event_loop() {
 // 系统初始化
 void init_system(int log_to_file) {
     log_init(log_to_file);
+    log_set_level(LOG_LEVEL_INFO); // 默认设置为 INFO 级别，过滤 DEBUG 日志
 
     LOG_I("System Starting...");
 
@@ -126,7 +138,7 @@ void *uart_rx_thread(void *arg) {
                     
                     switch (parser.cmd) {
                         case CMD_HEARTBEAT:
-                            LOG_I("[MCU -> Target] Heartbeat Response Received.");
+                            LOG_D("[MCU -> Target] Heartbeat Response Received.");
                             break;
                         case CMD_PRODUCT_INFO:
                             LOG_I("[MCU -> Target] Product Info: %.*s", parser.data_len, parser.data_buf);

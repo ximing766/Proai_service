@@ -17,7 +17,14 @@ static void on_audio(const unsigned char *audio_data, size_t audio_size, void *u
 }
 
 static void on_status(AgentStatus status, void *user_data) {
-    LOG_I("AI Platform Status Changed: %d", status);
+    const char *status_str = "UNKNOWN";
+    switch (status) {
+        case AGENT_STATUS_DISCONNECTED: status_str = "DISCONNECTED"; break;
+        case AGENT_STATUS_CONNECTING:   status_str = "CONNECTING"; break;
+        case AGENT_STATUS_CONNECTED:    status_str = "CONNECTED"; break;
+        case AGENT_STATUS_RECONNECTING: status_str = "RECONNECTING"; break;
+    }
+    LOG_I("AI Platform Status Changed: %d (%s)", status, status_str);
 }
 
 static void on_error(int error_code, const char *err_msg, void *user_data) {
@@ -30,19 +37,22 @@ int cloud_llm_init(const char *device_id, const char *device_secret) {
         return 0;
     }
 
+    setenv("AGENT_CA_BUNDLE", "/root/workspace/proai/cacert.pem", 1);
+    setenv("SSL_CERT_FILE", "/root/workspace/proai/cacert.pem", 1);
+    setenv("CURL_CA_BUNDLE", "/root/workspace/proai/cacert.pem", 1);
+
     AgentConfig config;
     memset(&config, 0, sizeof(AgentConfig));
     config.ws_url = "wss://tongqu.zworker.online/ws/v1/chat"; // 生产环境公网地址
     config.device_id = device_id;
     config.client_id = "proai-linux-client";
-    // 初始时不直接传入 auth_token，而是通过设备激活流程动态获取
-    config.authorization = NULL; 
+    config.authorization = ""; // 使用空字符串而非 NULL
     config.audio_format = "pcm";
     config.sample_rate = 16000;
     config.channels = 1;
     config.frame_duration_ms = 20;
-    config.feature_iot = 1;
-    config.feature_speaker = 1;
+    config.feature_iot = 0; 
+    config.feature_speaker = 0; // 强制文本模式，不请求 TTS 音频
     config.feature_mcp = 0;
 
     g_agent_client = agentCreateClient(&config);
@@ -72,11 +82,10 @@ int cloud_llm_init(const char *device_id, const char *device_secret) {
     
     if (ret != 0) {
         LOG_E("Failed to ensure authorized connection to AI platform, code: %d", ret);
-        // 这里如果是未激活/未绑定，可以调用 agentFetchDevicePairingCode 获取配对码打印出来
         return -1;
     }
 
-    LOG_I("AI Platform Connected Successfully!");
+    LOG_I("AI Platform Connected Successfully! Token expires in: %ld", token_result.m_expires_in);
     return 0;
 }
 
@@ -86,9 +95,7 @@ int cloud_llm_send_text(const char *text) {
         return -1;
     }
     int ret = agentSendText(g_agent_client, text);
-    if (ret != 0) {
-        LOG_E("Failed to send text to AI Platform, code: %d", ret);
-    }
+    LOG_I("AI Platform Sending Text: '%s' (Result Code: %d)", text, ret);
     return ret;
 }
 
@@ -98,9 +105,7 @@ int cloud_llm_send_json(const char *json_str) {
         return -1;
     }
     int ret = agentSendJson(g_agent_client, json_str);
-    if (ret != 0) {
-        LOG_E("Failed to send JSON to AI Platform, code: %d", ret);
-    }
+    LOG_I("AI Platform Sending JSON: %s (Result Code: %d)", json_str, ret);
     return ret;
 }
 

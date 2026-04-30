@@ -8,6 +8,7 @@
 #include <string.h>
 #include <dirent.h>
 #include <stdlib.h>
+#include <sys/time.h>
 
 #define LOG_DIR "log"
 #define MAX_LOG_SIZE (2 * 1024 * 1024) // 2MB
@@ -15,6 +16,15 @@
 
 static FILE *log_fp = NULL;
 static int use_file = 0;
+static LogLevel g_log_level = LOG_LEVEL_DEBUG;
+
+void log_set_level(LogLevel level) {
+    g_log_level = level;
+}
+
+LogLevel log_get_level(void) {
+    return g_log_level;
+}
 
 static int cmpstringp(const void *p1, const void *p2) {
     return strcmp(* (char * const *) p1, * (char * const *) p2);
@@ -95,8 +105,13 @@ void log_init(int to_file) {
         }
     }
 
+    if (log_fp) {
+        fclose(log_fp);
+        log_fp = NULL;
+    }
+
     rotate_logs(); // 启动时清理多余的历史日志文件
-    open_new_log_file();
+    open_new_log_file(); // 确保每次启动都创建新文件
 }
 
 void log_close(void) {
@@ -107,10 +122,15 @@ void log_close(void) {
 }
 
 void log_write(LogLevel level, const char *fmt, ...) {
-    time_t now = time(NULL);
-    struct tm *t = localtime(&now);
-    char time_buf[32];
-    strftime(time_buf, sizeof(time_buf), "%Y-%m-%d %H:%M:%S", t);
+    if (level < g_log_level) return;
+
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    struct tm *t = localtime(&tv.tv_sec);
+    
+    char time_buf[64];
+    int len = strftime(time_buf, sizeof(time_buf), "%Y-%m-%d %H:%M:%S", t);
+    snprintf(time_buf + len, sizeof(time_buf) - len, ".%03ld", tv.tv_usec / 1000);
 
     const char *level_str;
     const char *color_start = "";
