@@ -10,10 +10,13 @@
 #include "inc/tuya_protocol.h"
 #include "inc/queue.h"
 #include "inc/audio_module.h"
+#include "inc/ipc_server.h"
 
 static int g_uart_fd = -1;
 static pthread_t g_uart_thread;
 MsgQueue g_sys_queue;
+static const char *g_ipc_bind_ip = "127.0.0.1";
+static const int g_ipc_cmd_port = 19090;
 
 // 初始化系统
 void init_system(int log_to_file, LogLevel log_level);
@@ -122,6 +125,11 @@ void init_system(int log_to_file, LogLevel log_level) {
     // 0.5 初始化音频模块
     audio_module_init();
 
+    // 0.6 初始化本地语音模块控制通道（JSON over TCP, 长连接）
+    if (ipc_server_start(g_ipc_bind_ip, g_ipc_cmd_port) != 0) {
+        LOG_W("IPC command server init failed: %s:%d", g_ipc_bind_ip, g_ipc_cmd_port);
+    }
+
     // 1. 初始化 UART 连接兔子板模拟器
     if (init_uart("/tmp/ttyModule") != 0) {
         LOG_W("UART init failed. Running without MCU connection.");
@@ -146,6 +154,7 @@ void init_system(int log_to_file, LogLevel log_level) {
 // 系统清理
 void cleanup_system() {
     if (g_uart_fd > 0) close(g_uart_fd);
+    ipc_server_stop();
     cloud_llm_cleanup();
     audio_module_cleanup();
     msg_queue_destroy(&g_sys_queue);

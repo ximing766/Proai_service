@@ -25,6 +25,7 @@ set(SOURCES
     src/cloud_tuya.c
     src/queue.c
     src/audio_module.c
+    src/ipc_server.c
 )
 
 # 添加 Tongqu SDK 开发库路径（用于链接阶段查找 libagent_sdk.so）

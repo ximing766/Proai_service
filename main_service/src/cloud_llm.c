@@ -61,8 +61,9 @@ static void on_message(const char *msg, void *user_data) {
 }
 
 static void on_audio(const unsigned char *audio_data, size_t audio_size, void *user_data) {
-    // 旁路处理：音频数据直接丢给音频播放模块，不进主线程队列，防止阻塞控制流
-    audio_module_play(audio_data, audio_size);
+    (void)user_data;
+    // 直接交给本地音频模块处理（不走 IPC）
+    (void)audio_module_play(audio_data, audio_size);
 }
 
 static void on_status(AgentStatus status, void *user_data) {

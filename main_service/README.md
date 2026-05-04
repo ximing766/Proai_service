@@ -41,6 +41,8 @@ export AGENT_WS_URL="wss://tongqu.zworker.online/ws/v1/chat"
 export AGENT_DEVICE_ID="0001"
 export AGENT_DEVICE_SECRET="K2JJTF9SWL4NWWK28DRP7W9YAX4FSRAQ"
 
+/etc/init.d/S99rabbit_mcu_sim start|stop|restart
+ps | grep rabbit_mcu_sim.py
 
 ## 3. 线程与并发模型
 
