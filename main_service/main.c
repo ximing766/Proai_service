@@ -25,6 +25,69 @@ void run_event_loop();
 int init_uart(const char *dev);
 void *uart_rx_thread(void *arg);
 void tuya_send_cmd(uint8_t cmd, uint8_t *data, uint16_t len);
+static void on_mcu_heartbeat(const tuya_parser_t *parser, void *user_data);
+static void on_mcu_product_info(const tuya_parser_t *parser, void *user_data);
+static void on_mcu_dp_report(const tuya_parser_t *parser, void *user_data);
+static void on_mcu_reset(const tuya_parser_t *parser, void *user_data);
+static void on_mcu_get_version(const tuya_parser_t *parser, void *user_data);
+static void on_mcu_cmd_22(const tuya_parser_t *parser, void *user_data);
+static void on_mcu_cmd_26(const tuya_parser_t *parser, void *user_data);
+static void on_mcu_default(const tuya_parser_t *parser, void *user_data);
+
+static const tuya_mcu_dispatcher_t g_mcu_dispatcher = {
+    .on_heartbeat = on_mcu_heartbeat,
+    .on_product_info = on_mcu_product_info,
+    .on_dp_report = on_mcu_dp_report,
+    .on_reset = on_mcu_reset,
+    .on_get_m_version = on_mcu_get_version,
+    .on_cmd_22 = on_mcu_cmd_22,
+    .on_cmd_26 = on_mcu_cmd_26,
+    .on_default = on_mcu_default,
+};
+
+static void on_mcu_heartbeat(const tuya_parser_t *parser, void *user_data) {
+    (void)parser;
+    (void)user_data;
+    LOG_D("[MCU -> Target] Heartbeat Response Received.");
+}
+
+static void on_mcu_product_info(const tuya_parser_t *parser, void *user_data) {
+    (void)user_data;
+    LOG_I("[MCU -> Target] Product Info: %.*s", parser->data_len, parser->data_buf);
+}
+
+static void on_mcu_dp_report(const tuya_parser_t *parser, void *user_data) {
+    (void)parser;
+    (void)user_data;
+    LOG_I("[MCU -> Target] DP Status Report Received (Length: %d).", parser->data_len);
+    // 这里你可以解析 DP 并上报给涂鸦云/AI云
+}
+
+static void on_mcu_reset(const tuya_parser_t *parser, void *user_data) {
+    (void)parser;
+    (void)user_data;
+    LOG_W("[MCU -> Target] MCU Reset Notification Received.");
+}
+
+static void on_mcu_get_version(const tuya_parser_t *parser, void *user_data) {
+    (void)user_data;
+    LOG_I("[MCU -> Target] MCU Version Reply: %.*s", parser->data_len, parser->data_buf);
+}
+
+static void on_mcu_cmd_22(const tuya_parser_t *parser, void *user_data) {
+    (void)user_data;
+    LOG_I("[MCU -> Target] CMD 0x22 Received (Length: %d).", parser->data_len);
+}
+
+static void on_mcu_cmd_26(const tuya_parser_t *parser, void *user_data) {
+    (void)user_data;
+    LOG_I("[MCU -> Target] CMD 0x26 Received (Length: %d).", parser->data_len);
+}
+
+static void on_mcu_default(const tuya_parser_t *parser, void *user_data) {
+    (void)user_data;
+    LOG_I("[MCU -> Target] Other CMD Received: 0x%02X", parser->cmd);
+}
 
 static void print_usage(const char *prog_name) {
     printf("Usage: %s [options]\n", prog_name);
@@ -89,10 +152,10 @@ void run_event_loop() {
         }
     } else {
         // 队列超时 (1秒没有收到任何控制消息)
-        // 可以在这里执行定时任务，例如：每 5 秒发一次心跳
+        // 可以在这里执行定时任务，例如：每 15 秒发一次心跳
         static int heartbeat_counter = 0;
         heartbeat_counter++;
-        if (heartbeat_counter >= 5) {
+        if (heartbeat_counter >= 15) {
             tuya_send_cmd(CMD_HEARTBEAT, NULL, 0);
             heartbeat_counter = 0;
         }
@@ -187,6 +250,7 @@ void tuya_send_cmd(uint8_t cmd, uint8_t *data, uint16_t len) {
 }
 
 void *uart_rx_thread(void *arg) {
+    (void)arg;
     uint8_t buf[256];
     tuya_parser_t parser;
     tuya_parser_init(&parser);
@@ -198,22 +262,7 @@ void *uart_rx_thread(void *arg) {
                 if (tuya_parser_process(&parser, buf[i])) {
                     // 成功解析出一帧完整数据
                     LOG_D("Tuya Frame Received: CMD=0x%02X, LEN=%d", parser.cmd, parser.data_len);
-                    
-                    switch (parser.cmd) {
-                        case CMD_HEARTBEAT:
-                            LOG_D("[MCU -> Target] Heartbeat Response Received.");
-                            break;
-                        case CMD_PRODUCT_INFO:
-                            LOG_I("[MCU -> Target] Product Info: %.*s", parser.data_len, parser.data_buf);
-                            break;
-                        case CMD_DP_REPORT:
-                            LOG_I("[MCU -> Target] DP Status Report Received (Length: %d).", parser.data_len);
-                            // 这里你可以解析 DP 并上报给涂鸦云/AI云
-                            break;
-                        default:
-                            LOG_I("[MCU -> Target] Other CMD Received: 0x%02X", parser.cmd);
-                            break;
-                    }
+                    tuya_dispatch_mcu_frame(&parser, &g_mcu_dispatcher, NULL);
                 }
             }
         } else {

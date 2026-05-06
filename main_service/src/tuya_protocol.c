@@ -26,6 +26,35 @@ int tuya_pack_frame(uint8_t cmd, uint8_t *data, uint16_t len, uint8_t *out_buf) 
     return idx;
 }
 
+int tuya_pack_dp_raw(uint8_t dp_id, uint8_t dp_type, const uint8_t *dp_value, uint16_t dp_value_len,
+                     uint8_t *out_buf, uint16_t out_buf_size) {
+    // DP format: dp_id(1) + dp_type(1) + len(2) + value(N)
+    uint16_t total = (uint16_t)(4 + dp_value_len);
+    if (out_buf == NULL) return -1;
+    if (dp_value_len > 0 && dp_value == NULL) return -1;
+    if (total > out_buf_size) return -1;
+
+    int idx = 0;
+    out_buf[idx++] = dp_id;
+    out_buf[idx++] = dp_type;
+    out_buf[idx++] = (uint8_t)((dp_value_len >> 8) & 0xFF);
+    out_buf[idx++] = (uint8_t)(dp_value_len & 0xFF);
+    if (dp_value_len > 0) {
+        memcpy(&out_buf[idx], dp_value, dp_value_len);
+        idx += dp_value_len;
+    }
+    return idx;
+}
+
+int tuya_pack_dp_bool(uint8_t dp_id, uint8_t value, uint8_t *out_buf, uint16_t out_buf_size) {
+    uint8_t v = value ? 1 : 0;
+    return tuya_pack_dp_raw(dp_id, DP_TYPE_BOOL, &v, 1, out_buf, out_buf_size);
+}
+
+int tuya_pack_dp_enum(uint8_t dp_id, uint8_t value, uint8_t *out_buf, uint16_t out_buf_size) {
+    return tuya_pack_dp_raw(dp_id, DP_TYPE_ENUM, &value, 1, out_buf, out_buf_size);
+}
+
 void tuya_parser_init(tuya_parser_t *parser) {
     memset(parser, 0, sizeof(tuya_parser_t));
     parser->state = STATE_HEAD_1;
@@ -93,4 +122,35 @@ int tuya_parser_process(tuya_parser_t *parser, uint8_t byte) {
             }
     }
     return 0;
+}
+
+void tuya_dispatch_mcu_frame(const tuya_parser_t *parser, const tuya_mcu_dispatcher_t *dispatcher, void *user_data) {
+    if (!parser || !dispatcher) return;
+
+    switch (parser->cmd) {
+        case CMD_HEARTBEAT:
+            if (dispatcher->on_heartbeat) dispatcher->on_heartbeat(parser, user_data);
+            break;
+        case CMD_PRODUCT_INFO:
+            if (dispatcher->on_product_info) dispatcher->on_product_info(parser, user_data);
+            break;
+        case CMD_DP_REPORT:
+            if (dispatcher->on_dp_report) dispatcher->on_dp_report(parser, user_data);
+            break;
+        case CMD_RESET:
+            if (dispatcher->on_reset) dispatcher->on_reset(parser, user_data);
+            break;
+        case CMD_GET_M_VERSION:
+            if (dispatcher->on_get_m_version) dispatcher->on_get_m_version(parser, user_data);
+            break;
+        case CMD_MCU_FUNC_22:
+            if (dispatcher->on_cmd_22) dispatcher->on_cmd_22(parser, user_data);
+            break;
+        case CMD_MCU_FUNC_26:
+            if (dispatcher->on_cmd_26) dispatcher->on_cmd_26(parser, user_data);
+            break;
+        default:
+            if (dispatcher->on_default) dispatcher->on_default(parser, user_data);
+            break;
+    }
 }
