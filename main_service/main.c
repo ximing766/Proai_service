@@ -160,13 +160,11 @@ void run_event_loop() {
             heartbeat_counter = 0;
         }
         
-        // 每 60 秒发送一次文本测试请求
+        // 每 15 秒发送一次文本测试请求（验证已注册 IOT 能力是否返回 tool_calls）
         static int test_counter = 0;
         test_counter++;
         if (test_counter >= 15) {
-            cloud_llm_send_json("{\"type\":\"iot\",\"descriptors\":[{\"device\":\"demo_light\",\"method\":\"turn_on\",\"description\":\"Turn on the demo light\",\"parameters\":{\"power\":\"bool\"}}]}");
-            sleep(1);
-            cloud_llm_send_text("你好，请介绍一下你自己。");
+            cloud_llm_send_text("请把座椅加热打开，并把温度设置为26度，电机强度设置为2档。");
             test_counter = 0;
         }
     }

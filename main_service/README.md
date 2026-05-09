@@ -35,7 +35,13 @@
   - 音频流走旁路，不进入主控指令队列，防止阻塞
 
 # 2. some CLI
+date -u -s "2026-05-06 14:50:00"
+export TZ=CST-8
+date
+ntpd -gq -p pool.ntp.org
+
 ssh root@192.168.1.7
+scp ca-certificates.crt root@192.168.1.7:/root/workspace/proai/
 
 export AGENT_WS_URL="wss://tongqu.zworker.online/ws/v1/chat"
 export AGENT_DEVICE_ID="0001"

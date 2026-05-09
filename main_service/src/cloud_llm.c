@@ -7,6 +7,15 @@
 #include <string.h>
 
 static AgentClient *g_agent_client = NULL;
+static const char *k_ca_bundle_path = "/root/workspace/proai/ca-certificates.crt";
+
+// IOT descriptors are extracted as standalone JSON strings for easy maintenance.
+static const char *k_iot_descriptor_msg =
+    "{\"type\":\"iot\",\"descriptors\":["
+    "{\"device\":\"seat_controller\",\"method\":\"set_heater\",\"description\":\"Set seat heater on or off\",\"parameters\":{\"power\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_temperature\",\"description\":\"Set seat target temperature in Celsius\",\"parameters\":{\"temp\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_motor_level\",\"description\":\"Set seat motor intensity level\",\"parameters\":{\"level\":\"int\"}}"
+    "]}";
 
 static const char *json_get_string_or_default(const cJSON *obj, const char *key, const char *def_val) {
     const cJSON *item = cJSON_GetObjectItemCaseSensitive(obj, key);
@@ -24,12 +33,36 @@ static int json_get_int_or_default(const cJSON *obj, const char *key, int def_va
     return def_val;
 }
 
+static void log_tool_calls(const cJSON *root) {
+    const cJSON *tool_calls = cJSON_GetObjectItemCaseSensitive(root, "tool_calls");
+    if (!cJSON_IsArray(tool_calls)) return;
+
+    int count = cJSON_GetArraySize(tool_calls);
+    LOG_I("AI Assistant tool_calls count: %d", count);
+    for (int i = 0; i < count; i++) {
+        const cJSON *call = cJSON_GetArrayItem(tool_calls, i);
+        char *raw = cJSON_PrintUnformatted(call);
+        if (raw) {
+            LOG_I("AI Assistant tool_call[%d]: %s", i, raw);
+            free(raw);
+        }
+    }
+}
+
+static void cloud_llm_register_iot_capabilities(void) {
+    if (!g_agent_client) return;
+
+    int ret = agentSendJson(g_agent_client, k_iot_descriptor_msg);
+    LOG_I("AI IOT Register: msg=%s, ret=%d", k_iot_descriptor_msg, ret);
+}
+
 static void on_message(const char *msg, void *user_data) {
     (void)user_data;
     if (msg == NULL) {
         LOG_W("AI Platform Message Recv: null");
         return;
     }
+    LOG_I("AI Platform Message Recv: %s", msg);
 
     cJSON *root = cJSON_Parse(msg);
     if (root == NULL) {
@@ -44,6 +77,7 @@ static void on_message(const char *msg, void *user_data) {
         int tts_bytes = json_get_int_or_default(root, "tts_bytes_length", 0);
         LOG_I("AI Assistant Text: %s", text);
         LOG_D("AI Assistant Meta: asr_text='%s', tts_bytes_length=%d", asr_text, tts_bytes);
+        // log_tool_calls(root); // Only parse + log tool_calls, no execution here.
     } else if (strcmp(type, "error") == 0) {
         const char *message = json_get_string_or_default(root, "message", "unknown");
         LOG_E("AI Platform Error Message: %s", message);
@@ -87,9 +121,9 @@ int cloud_llm_init(const char *device_id, const char *device_secret) {
         return 0;
     }
 
-    setenv("AGENT_CA_BUNDLE", "/root/workspace/proai/cacert.pem", 1);
-    setenv("SSL_CERT_FILE", "/root/workspace/proai/cacert.pem", 1);
-    setenv("CURL_CA_BUNDLE", "/root/workspace/proai/cacert.pem", 1);
+    setenv("AGENT_CA_BUNDLE", k_ca_bundle_path, 1);
+    setenv("SSL_CERT_FILE", k_ca_bundle_path, 1);
+    setenv("CURL_CA_BUNDLE", k_ca_bundle_path, 1);
 
     AgentConfig config;
     memset(&config, 0, sizeof(AgentConfig));
@@ -101,7 +135,7 @@ int cloud_llm_init(const char *device_id, const char *device_secret) {
     config.sample_rate = 16000;
     config.channels = 1;
     config.frame_duration_ms = 20;
-    config.feature_iot = 0; 
+    config.feature_iot = 1;
     config.feature_speaker = 0; // 强制文本模式，不请求 TTS 音频
     config.feature_mcp = 0;
 
@@ -134,6 +168,7 @@ int cloud_llm_init(const char *device_id, const char *device_secret) {
     }
 
     LOG_I("AI Platform Connected Successfully! Token expires in: %ld", token_result.m_expires_in);
+    cloud_llm_register_iot_capabilities();
     return 0;
 }
 
