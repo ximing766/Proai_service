@@ -5,6 +5,7 @@
 #include <pthread.h>
 #include <fcntl.h>
 #include <termios.h>
+#include <errno.h>
 #include "inc/log.h"
 #include "inc/cloud_llm.h"
 #include "inc/tuya_protocol.h"
@@ -22,9 +23,9 @@ static const int g_ipc_cmd_port = 19090;
 void init_system(int log_to_file, LogLevel log_level);
 void cleanup_system();
 void run_event_loop();
-int init_uart(const char *dev);
-void *uart_rx_thread(void *arg);
-void tuya_send_cmd(uint8_t cmd, uint8_t *data, uint16_t len);
+static int init_uart(const char *dev);
+static void *uart_rx_thread(void *arg);
+static void tuya_send_cmd(uint8_t cmd, uint8_t *data, uint16_t len);
 static void on_mcu_heartbeat(const tuya_parser_t *parser, void *user_data);
 static void on_mcu_product_info(const tuya_parser_t *parser, void *user_data);
 static void on_mcu_dp_report(const tuya_parser_t *parser, void *user_data);
@@ -191,17 +192,8 @@ void init_system(int log_to_file, LogLevel log_level) {
         LOG_W("IPC command server init failed: %s:%d", g_ipc_bind_ip, g_ipc_cmd_port);
     }
 
-    // 1. 初始化 UART 连接兔子板模拟器
-    if (init_uart("/tmp/ttyModule") != 0) {
-        LOG_W("UART init failed. Running without MCU connection.");
-    } else {
-        // 刚启动时，通过推入队列来发送查询指令，测试队列功能
-        SystemMsg msg_info = { .type = MSG_TYPE_TIMER_TICK, .cmd = CMD_PRODUCT_INFO, .data = NULL, .len = 0 };
-        msg_queue_push(&g_sys_queue, &msg_info);
-
-        SystemMsg msg_query = { .type = MSG_TYPE_TIMER_TICK, .cmd = CMD_DP_QUERY, .data = NULL, .len = 0 };
-        msg_queue_push(&g_sys_queue, &msg_query);
-    }
+    // 1. 启动 UART 线程（它会自动处理连接和重连）
+    init_uart("/tmp/ttyModule");
 
     // 2. 使用官方提供的公网测试设备凭据初始化 AI
     const char *test_device_id = "0001";
@@ -222,49 +214,84 @@ void cleanup_system() {
     log_close();
 }
 
-int init_uart(const char *dev) {
-    g_uart_fd = open(dev, O_RDWR | O_NOCTTY | O_NDELAY);
-    if (g_uart_fd < 0) return -1;
-    
-    struct termios options;
-    tcgetattr(g_uart_fd, &options);
-    cfmakeraw(&options);
-    tcsetattr(g_uart_fd, TCSANOW, &options);
-
-    pthread_create(&g_uart_thread, NULL, uart_rx_thread, NULL);
+static int init_uart(const char *dev) {
+    // 仅仅启动线程，让线程去负责连接和维护
+    pthread_create(&g_uart_thread, NULL, uart_rx_thread, (void *)dev);
     return 0;
 }
 
-void tuya_send_cmd(uint8_t cmd, uint8_t *data, uint16_t len) {
+static void tuya_send_cmd(uint8_t cmd, uint8_t *data, uint16_t len) {
     if (len > 256) {
         LOG_E("tuya_send_cmd payload too large: %d", len);
         return;
     }
     uint8_t tx_buf[512];
     int tx_len = tuya_pack_frame(cmd, data, len, tx_buf);
-    if (g_uart_fd > 0) {
-        write(g_uart_fd, tx_buf, tx_len);
+    
+    // 增加对 fd 的检查，避免向已关闭或无效的 fd 写入
+    int fd = g_uart_fd;
+    if (fd > 0) {
+        if (write(fd, tx_buf, tx_len) < 0) {
+            LOG_W("UART write failed, MCU might be disconnected.");
+        }
     }
 }
 
-void *uart_rx_thread(void *arg) {
-    (void)arg;
+static void *uart_rx_thread(void *arg) {
+    const char *dev = (const char *)arg;
     uint8_t buf[256];
     tuya_parser_t parser;
     tuya_parser_init(&parser);
 
+    LOG_I("UART background thread started for %s", dev);
+
     while (1) {
+        if (g_uart_fd <= 0) {
+            // 尝试打开串口
+            g_uart_fd = open(dev, O_RDWR | O_NOCTTY | O_NDELAY);
+            if (g_uart_fd > 0) {
+                struct termios options;
+                tcgetattr(g_uart_fd, &options);
+                cfmakeraw(&options);
+                tcsetattr(g_uart_fd, TCSANOW, &options);
+                LOG_I("UART connected to %s (fd: %d)", dev, g_uart_fd);
+                
+                // 连接成功后，可以主动查询一次 MCU 信息
+                SystemMsg msg_info = { .type = MSG_TYPE_TIMER_TICK, .cmd = CMD_PRODUCT_INFO, .data = NULL, .len = 0 };
+                msg_queue_push(&g_sys_queue, &msg_info);
+            } else {
+                // 没打开成功，等一下再试，不阻塞主程序
+                usleep(2000000); // 2秒重试一次
+                continue;
+            }
+        }
+
+        // 已经连接，开始读取
         int n = read(g_uart_fd, buf, sizeof(buf));
         if (n > 0) {
             for (int i = 0; i < n; i++) {
                 if (tuya_parser_process(&parser, buf[i])) {
-                    // 成功解析出一帧完整数据
                     LOG_D("Tuya Frame Received: CMD=0x%02X, LEN=%d", parser.cmd, parser.data_len);
                     tuya_dispatch_mcu_frame(&parser, &g_mcu_dispatcher, NULL);
                 }
             }
+        } else if (n < 0) {
+            // 如果是因为非阻塞模式下暂时没数据，忽略它
+            if (errno == EAGAIN || errno == EWOULDBLOCK) {
+                usleep(20000); // 20ms
+                continue;
+            }
+            // 真正的读取报错，可能是模拟器关了
+            LOG_W("UART connection lost (errno: %d), closing...", errno);
+            close(g_uart_fd);
+            g_uart_fd = -1;
+            usleep(5000000); // 5秒后进入下一次循环尝试重连
         } else {
-            usleep(10000); // 10ms
+            // 返回 0 通常表示对端关闭（在某些伪终端或管道中）
+            LOG_W("UART connection closed by peer, reconnecting...");
+            close(g_uart_fd);
+            g_uart_fd = -1;
+            usleep(2000000);
         }
     }
     return NULL;

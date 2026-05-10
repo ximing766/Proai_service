@@ -9,12 +9,18 @@ TARGET_USER="root"
 TARGET_PASS="luckfox"
 TARGET_DIR="/root/workspace/proai"
 
+STRIP_ARG=""
+# Check for --strip argument
+for arg in "$@"; do
+    if [ "$arg" == "--strip" ]; then
+        STRIP_ARG="--strip"
+    fi
+done
+
 echo "=============================="
 echo "1. 正在编译..."
-mkdir -p build_arm
+./build.sh $STRIP_ARG
 cd build_arm
-cmake -DCMAKE_TOOLCHAIN_FILE=../toolchain.cmake ..
-make -j4
 
 echo "2. 编译成功！正在将可执行文件推送到目标板..."
 
