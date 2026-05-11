@@ -7,7 +7,8 @@
 #include <string.h>
 
 static AgentClient *g_agent_client = NULL;
-static const char *k_ca_bundle_path = "/root/workspace/proai/ca-certificates.crt";
+// static const char *k_ca_bundle_path = "/root/workspace/proai/ca-certificates.crt";
+static const char *k_ca_bundle_path = "/root/ca-certificates.crt";
 
 // IOT descriptors are extracted as standalone JSON strings for easy maintenance.
 static const char *k_iot_descriptor_msg =
