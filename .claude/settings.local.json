@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python *)",
+      "Bash(./build.sh)",
+      "Bash(cmake --build . --config Release)"
+    ]
+  }
+}
