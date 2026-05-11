@@ -14,61 +14,60 @@ static const char *k_ca_bundle_path = "/root/ca-certificates.crt";
 
 // IOT descriptors are extracted as standalone JSON strings for easy maintenance.
 static const char *k_iot_descriptor_msg =
-    "{\"type\":\"iot\",\"descriptors\":[
-    "{\"device\":\"seat_controller\",\"method\":\"set_hotSw\",\"description\":\"[DP101] 手动加热开关 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}"",
-    "{\"device\":\"seat_controller\",\"method\":\"set_autoHotTempTH\",\"description\":\"[DP102] 自动加热设定温度上限 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_autoFanTempTH\",\"description\":\"[DP103] 自动风扇设定温度上限 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_autoHotTempTL\",\"description\":\"[DP104] 自动加热设定温度下限 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_fanSw\",\"description\":\"[DP105] 手动通风开关 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_IMEI\",\"description\":\"[DP106] IMEI (只上报, type=raw)\",\"parameters\":{\"value\":\"string\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_mcuLpTimer\",\"description\":\"[DP107] 主动低功耗计时器 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_autoFanTempTL\",\"description\":\"[DP108] 自动风扇设定温度下限 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_recTemp\",\"description\":\"[DP109] 座椅温度 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_batPercent\",\"description\":\"[DP110] 电量百分比 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_batCharge\",\"description\":\"[DP111] 电池充电 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_leaveWarm\",\"description\":\"[DP112] 离车报警 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_rssi\",\"description\":\"[DP113] 信号强度 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_batWarm\",\"description\":\"[DP114] 电池报警 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_fanWarm\",\"description\":\"[DP115] 风扇异常报警 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_hotWarm\",\"description\":\"[DP116] 加热异常报警 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_protectionLeftSw\",\"description\":\"[DP117] 侧保护开关(左) (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_protectionRightSw\",\"description\":\"[DP118] 侧保护开关(右) (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_leftProtectionWarm\",\"description\":\"[DP119] 左侧保护报警 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_autoMode\",\"description\":\"[DP120] 自动模式 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_rightProtectionWarm\",\"description\":\"[DP121] 右侧保护报警 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_voiceModuleVersion\",\"description\":\"[DP122] 语音模组版本号 (只上报, type=raw)\",\"parameters\":{\"value\":\"string\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_ICCID\",\"description\":\"[DP123] ICCID (只上报, type=raw)\",\"parameters\":{\"value\":\"string\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_trafficSw\",\"description\":\"[DP124] 流量开关 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_sleepTimeSet\",\"description\":\"[DP125] 休眠时间设置 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_leaveWarmTimeSet\",\"description\":\"[DP126] 离车报警时间设置 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_noLoadModeRunTimeSet\",\"description\":\"[DP127] 非负载模式运行时间设置 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_F_light\",\"description\":\"[DP128] 氛围灯 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_trafficStartTime\",\"description\":\"[DP129] 流量起始时间 (只下发, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_trafficEndTime\",\"description\":\"[DP130] 流量结束时间 (只下发, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_GNSS\",\"description\":\"[DP131] 经纬度 (只上报, type=raw)\",\"parameters\":{\"value\":\"string\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_isRemoteMode\",\"description\":\"[DP132] 远程模式 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_cloudUnbund\",\"description\":\"[DP133] 云端解绑 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_hardWareVersion\",\"description\":\"[DP134] 硬件版本号 (只上报, type=raw)\",\"parameters\":{\"value\":\"string\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_seaton\",\"description\":\"[DP135] 落座状态 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_mcusleep\",\"description\":\"[DP136] mcu休眠 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_auto_rotate\",\"description\":\"[DP137] 自动旋转 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_assist_rotate\",\"description\":\"[DP138] 助力旋转 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_auto_rotate_ready\",\"description\":\"[DP139] 自动旋转校准状态 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_auto_fan_temp\",\"description\":\"[DP140] 自动通风温度阈值 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_auto_heat_temp\",\"description\":\"[DP141] 自动加热温度阈值 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_rotary_position\",\"description\":\"[DP142] 座椅旋转位置值 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_rotate_command\",\"description\":\"[DP143] app旋转控制指令 (只下发, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_installation_position\",\"description\":\"[DP144] 座椅安装位置 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_longitude_value\",\"description\":\"[DP145] GPS经度值 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_longitude_ew\",\"description\":\"[DP146] 东西经度显示 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_latitude_value\",\"description\":\"[DP147] GPS纬度值 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_latitude_ns\",\"description\":\"[DP148] 南北纬度显示 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"set_lptime_onoff\",\"description\":\"[DP149] 定时唤醒开关 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_seat_tilt_position\",\"description\":\"[DP150] 座椅倾角位置 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
-    "{\"device\":\"seat_controller\",\"method\":\"get_err_value\",\"description\":\"[DP151] 故障信息 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}}",
+    "{\"type\":\"iot\",\"descriptors\":["
+    "{\"device\":\"seat_controller\",\"method\":\"set_hotSw\",\"description\":\"[DP101] 手动加热开关 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_autoHotTempTH\",\"description\":\"[DP102] 自动加热设定温度上限 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_autoFanTempTH\",\"description\":\"[DP103] 自动风扇设定温度上限 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_autoHotTempTL\",\"description\":\"[DP104] 自动加热设定温度下限 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_fanSw\",\"description\":\"[DP105] 手动通风开关 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_IMEI\",\"description\":\"[DP106] IMEI (只上报, type=raw)\",\"parameters\":{\"value\":\"string\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_mcuLpTimer\",\"description\":\"[DP107] 主动低功耗计时器 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_autoFanTempTL\",\"description\":\"[DP108] 自动风扇设定温度下限 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_recTemp\",\"description\":\"[DP109] 座椅温度 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_batPercent\",\"description\":\"[DP110] 电量百分比 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_batCharge\",\"description\":\"[DP111] 电池充电 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_leaveWarm\",\"description\":\"[DP112] 离车报警 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_rssi\",\"description\":\"[DP113] 信号强度 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_batWarm\",\"description\":\"[DP114] 电池报警 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_fanWarm\",\"description\":\"[DP115] 风扇异常报警 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_hotWarm\",\"description\":\"[DP116] 加热异常报警 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_protectionLeftSw\",\"description\":\"[DP117] 侧保护开关(左) (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_protectionRightSw\",\"description\":\"[DP118] 侧保护开关(右) (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_leftProtectionWarm\",\"description\":\"[DP119] 左侧保护报警 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_autoMode\",\"description\":\"[DP120] 自动模式 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_rightProtectionWarm\",\"description\":\"[DP121] 右侧保护报警 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_voiceModuleVersion\",\"description\":\"[DP122] 语音模组版本号 (只上报, type=raw)\",\"parameters\":{\"value\":\"string\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_ICCID\",\"description\":\"[DP123] ICCID (只上报, type=raw)\",\"parameters\":{\"value\":\"string\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_trafficSw\",\"description\":\"[DP124] 流量开关 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_sleepTimeSet\",\"description\":\"[DP125] 休眠时间设置 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_leaveWarmTimeSet\",\"description\":\"[DP126] 离车报警时间设置 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_noLoadModeRunTimeSet\",\"description\":\"[DP127] 非负载模式运行时间设置 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_F_light\",\"description\":\"[DP128] 氛围灯 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_trafficStartTime\",\"description\":\"[DP129] 流量起始时间 (只下发, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_trafficEndTime\",\"description\":\"[DP130] 流量结束时间 (只下发, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_GNSS\",\"description\":\"[DP131] 经纬度 (只上报, type=raw)\",\"parameters\":{\"value\":\"string\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_isRemoteMode\",\"description\":\"[DP132] 远程模式 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_cloudUnbund\",\"description\":\"[DP133] 云端解绑 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_hardWareVersion\",\"description\":\"[DP134] 硬件版本号 (只上报, type=raw)\",\"parameters\":{\"value\":\"string\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_seaton\",\"description\":\"[DP135] 落座状态 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_mcusleep\",\"description\":\"[DP136] mcu休眠 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_auto_rotate\",\"description\":\"[DP137] 自动旋转 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_assist_rotate\",\"description\":\"[DP138] 助力旋转 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_auto_rotate_ready\",\"description\":\"[DP139] 自动旋转校准状态 (只上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_auto_fan_temp\",\"description\":\"[DP140] 自动通风温度阈值 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_auto_heat_temp\",\"description\":\"[DP141] 自动加热温度阈值 (可下发可上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_rotary_position\",\"description\":\"[DP142] 座椅旋转位置值 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_rotate_command\",\"description\":\"[DP143] app旋转控制指令 (只下发, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_installation_position\",\"description\":\"[DP144] 座椅安装位置 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_longitude_value\",\"description\":\"[DP145] GPS经度值 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_longitude_ew\",\"description\":\"[DP146] 东西经度显示 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_latitude_value\",\"description\":\"[DP147] GPS纬度值 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_latitude_ns\",\"description\":\"[DP148] 南北纬度显示 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"set_lptime_onoff\",\"description\":\"[DP149] 定时唤醒开关 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_seat_tilt_position\",\"description\":\"[DP150] 座椅倾角位置 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
+    "{\"device\":\"seat_controller\",\"method\":\"get_err_value\",\"description\":\"[DP151] 故障信息 (只上报, type=value)\",\"parameters\":{\"value\":\"int\"}},"
     "{\"device\":\"seat_controller\",\"method\":\"set_mute_mode_switch\",\"description\":\"[DP152] 静音模式开关 (可下发可上报, type=bool)\",\"parameters\":{\"value\":\"bool\"}}"
-    "]"
-    "}";
+    "]}";
     
 static const char *json_get_string_or_default(const cJSON *obj, const char *key, const char *def_val) {
     const cJSON *item = cJSON_GetObjectItemCaseSensitive(obj, key);
@@ -148,7 +147,10 @@ static const iot_dp_map_t g_iot_dp_map[] = {
 };
 
 void execute_single_iot_call(const char *method, const cJSON *val_item, int is_offline_voice) {
-    if (!method || !val_item) return;
+    if (!method || !val_item) {
+        LOG_E("Invalid method or value item for AI tool_call");
+        return;
+    }
 
     // Find DP map
     const iot_dp_map_t *dp_map = NULL;

@@ -84,7 +84,7 @@ void run_event_loop() {
         // 可以在这里执行定时任务，例如：每 15 秒发一次心跳
         static int heartbeat_counter = 0;
         heartbeat_counter++;
-        if (heartbeat_counter >= 15) {
+        if (heartbeat_counter >= 10) {
             tuya_send_cmd(CMD_HEARTBEAT, NULL, 0);
             heartbeat_counter = 0;
         }
@@ -121,7 +121,7 @@ void init_system(int log_to_file, LogLevel log_level) {
     }
 
     // 1. 启动 UART 线程（它会自动处理连接和重连）
-    tuya_uart_init("/dev/ttyS0");
+    tuya_uart_init("/dev/ttyFIQ0");
 
     // 2. 使用官方提供的公网测试设备凭据初始化 AI
     const char *test_device_id = "0001";

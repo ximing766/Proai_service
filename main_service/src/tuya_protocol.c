@@ -344,6 +344,29 @@ void tuya_send_cmd(uint8_t cmd, uint8_t *data, uint16_t len) {
     }
     uint8_t tx_buf[512];
     int tx_len = tuya_pack_frame(cmd, data, len, tx_buf);
+
+    // 根据 CMD 类型获取文本描述
+    const char *cmd_name = "UNKNOWN";
+    switch (cmd) {
+        case CMD_HEARTBEAT:     cmd_name = "HEARTBEAT"; break;
+        case CMD_PRODUCT_INFO:  cmd_name = "PRODUCT_INFO"; break;
+        case CMD_WORK_MODE:     cmd_name = "WORK_MODE"; break;
+        case CMD_WIFI_STATE:    cmd_name = "WIFI_STATE"; break;
+        case CMD_DP_SEND:       cmd_name = "DP_SEND"; break;
+        case CMD_DP_QUERY:      cmd_name = "DP_QUERY"; break;
+        case CMD_FUNC_22:       cmd_name = "FUNC_22"; break;
+        case CMD_FUNC_26:       cmd_name = "FUNC_26"; break;
+        case CMD_UPGRADE_START: cmd_name = "UPGRADE_START"; break;
+        case CMD_UPGRADE_TRANS: cmd_name = "UPGRADE_TRANS"; break;
+        default:                cmd_name = "CUSTOM"; break;
+    }
+
+    // 格式化打印发送内容
+    char hex_str[1024] = {0};
+    for (int i = 0; i < tx_len && i < 340; i++) {
+        snprintf(hex_str + strlen(hex_str), 4, "%02X ", tx_buf[i]);
+    }
+    LOG_I("[Target -> MCU] [%s](0x%02X), Raw: %s", cmd_name, cmd, hex_str);
     
     // 增加对 fd 的检查，避免向已关闭或无效的 fd 写入
     int fd = g_uart_fd;

@@ -27,6 +27,8 @@ no response
 
 所有的 `intent` 均严格映射自云端定义的 `method` (数据点标识名)。对于需要下发状态的数据点，JSON 报文中需附带 `value` 字段。
 
+python3 -c "import socket; s=socket.socket(); s.connect(('127.0.0.1',19090)); s.send(b'{\"type\":\"intent\",\"intent\":\"set_fanSw\",\"value\":true,\"source\":\"local_voice\"}\n'); print(s.recv(1024)); s.close()"
+
 ### 4.1 通风控制 (DP105 set_fanSw)
 ```json
 {"type":"intent","intent":"set_fanSw","value":true,"source":"local_voice"}
