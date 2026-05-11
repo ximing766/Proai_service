@@ -28,6 +28,7 @@
 #define CMD_MCU_FUNC_26     0x26
 
 // DP data type
+#define DP_TYPE_RAW         0x00
 #define DP_TYPE_BOOL        0x01
 #define DP_TYPE_VALUE       0x02
 #define DP_TYPE_STRING      0x03
@@ -40,6 +41,7 @@ int tuya_pack_dp_raw(uint8_t dp_id, uint8_t dp_type, const uint8_t *dp_value, ui
                      uint8_t *out_buf, uint16_t out_buf_size);
 int tuya_pack_dp_bool(uint8_t dp_id, uint8_t value, uint8_t *out_buf, uint16_t out_buf_size);
 int tuya_pack_dp_enum(uint8_t dp_id, uint8_t value, uint8_t *out_buf, uint16_t out_buf_size);
+int tuya_pack_dp_value(uint8_t dp_id, int32_t value, uint8_t *out_buf, uint16_t out_buf_size);
 
 typedef enum {
     STATE_HEAD_1,

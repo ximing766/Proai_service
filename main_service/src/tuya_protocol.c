@@ -55,6 +55,15 @@ int tuya_pack_dp_enum(uint8_t dp_id, uint8_t value, uint8_t *out_buf, uint16_t o
     return tuya_pack_dp_raw(dp_id, DP_TYPE_ENUM, &value, 1, out_buf, out_buf_size);
 }
 
+int tuya_pack_dp_value(uint8_t dp_id, int32_t value, uint8_t *out_buf, uint16_t out_buf_size) {
+    uint8_t buf[4];
+    buf[0] = (value >> 24) & 0xFF;
+    buf[1] = (value >> 16) & 0xFF;
+    buf[2] = (value >> 8) & 0xFF;
+    buf[3] = value & 0xFF;
+    return tuya_pack_dp_raw(dp_id, DP_TYPE_VALUE, buf, 4, out_buf, out_buf_size);
+}
+
 void tuya_parser_init(tuya_parser_t *parser) {
     memset(parser, 0, sizeof(tuya_parser_t));
     parser->state = STATE_HEAD_1;

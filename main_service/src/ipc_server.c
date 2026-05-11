@@ -3,6 +3,7 @@
 #include "../inc/queue.h"
 #include "../inc/tuya_protocol.h"
 #include "../inc/cJSON.h"
+#include "../inc/cloud_llm.h"
 
 #include <arpa/inet.h>
 #include <errno.h>
@@ -53,25 +54,13 @@ static int handle_intent(const cJSON *root) {
     const cJSON *intent = cJSON_GetObjectItemCaseSensitive(root, "intent");
     if (!cJSON_IsString(intent) || intent->valuestring == NULL) return -1;
 
-    const char *name = intent->valuestring;
-    uint8_t *payload = (uint8_t *)malloc(5);
-    if (!payload) return -1;
-
-    if (strcmp(name, "heater_on") == 0) {
-        uint8_t p[] = {0x01, 0x01, 0x00, 0x01, 0x01};
-        memcpy(payload, p, sizeof(p));
-    } else if (strcmp(name, "heater_off") == 0) {
-        uint8_t p[] = {0x01, 0x01, 0x00, 0x01, 0x00};
-        memcpy(payload, p, sizeof(p));
-    } else {
-        free(payload);
-        return -1;
-    }
-
-    if (enqueue_mcu_cmd(CMD_DP_SEND, payload, 5, MSG_TYPE_OFFLINE_VOICE_CMD) != 0) {
-        return -1;
-    }
-    LOG_I("IPC intent accepted: %s", name);
+    const char *method = intent->valuestring;
+    const cJSON *val_item = cJSON_GetObjectItemCaseSensitive(root, "value");
+    
+    // 复用云端相同的映射执行逻辑，传入 method, value 节点，并标识来源于 offline voice (1)
+    execute_single_iot_call(method, val_item, 1);
+    
+    LOG_I("IPC intent handled: %s", method);
     return 0;
 }
 

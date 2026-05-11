@@ -2,6 +2,8 @@
 #include "../inc/log.h"
 #include "../inc/audio_module.h"
 #include "../inc/cJSON.h"
+#include "../inc/tuya_protocol.h"
+#include "../inc/queue.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -84,7 +86,123 @@ static int json_get_int_or_default(const cJSON *obj, const char *key, int def_va
     return def_val;
 }
 
-static void log_tool_calls(const cJSON *root) {
+typedef struct {
+    const char *method;
+    uint8_t dp_id;
+    uint8_t dp_type;
+} iot_dp_map_t;
+
+static const iot_dp_map_t g_iot_dp_map[] = {
+    {"set_hotSw", 101, DP_TYPE_BOOL},
+    {"set_autoHotTempTH", 102, DP_TYPE_VALUE},
+    {"set_autoFanTempTH", 103, DP_TYPE_VALUE},
+    {"set_autoHotTempTL", 104, DP_TYPE_VALUE},
+    {"set_fanSw", 105, DP_TYPE_BOOL},
+    {"get_IMEI", 106, DP_TYPE_RAW},
+    {"get_mcuLpTimer", 107, DP_TYPE_VALUE},
+    {"set_autoFanTempTL", 108, DP_TYPE_VALUE},
+    {"get_recTemp", 109, DP_TYPE_VALUE},
+    {"get_batPercent", 110, DP_TYPE_VALUE},
+    {"get_batCharge", 111, DP_TYPE_BOOL},
+    {"get_leaveWarm", 112, DP_TYPE_BOOL},
+    {"get_rssi", 113, DP_TYPE_VALUE},
+    {"get_batWarm", 114, DP_TYPE_BOOL},
+    {"get_fanWarm", 115, DP_TYPE_BOOL},
+    {"get_hotWarm", 116, DP_TYPE_BOOL},
+    {"set_protectionLeftSw", 117, DP_TYPE_BOOL},
+    {"set_protectionRightSw", 118, DP_TYPE_BOOL},
+    {"get_leftProtectionWarm", 119, DP_TYPE_BOOL},
+    {"set_autoMode", 120, DP_TYPE_BOOL},
+    {"get_rightProtectionWarm", 121, DP_TYPE_BOOL},
+    {"get_voiceModuleVersion", 122, DP_TYPE_RAW},
+    {"get_ICCID", 123, DP_TYPE_RAW},
+    {"set_trafficSw", 124, DP_TYPE_BOOL},
+    {"set_sleepTimeSet", 125, DP_TYPE_VALUE},
+    {"set_leaveWarmTimeSet", 126, DP_TYPE_VALUE},
+    {"set_noLoadModeRunTimeSet", 127, DP_TYPE_VALUE},
+    {"set_F_light", 128, DP_TYPE_BOOL},
+    {"set_trafficStartTime", 129, DP_TYPE_VALUE},
+    {"set_trafficEndTime", 130, DP_TYPE_VALUE},
+    {"get_GNSS", 131, DP_TYPE_RAW},
+    {"get_isRemoteMode", 132, DP_TYPE_BOOL},
+    {"set_cloudUnbund", 133, DP_TYPE_BOOL},
+    {"get_hardWareVersion", 134, DP_TYPE_RAW},
+    {"get_seaton", 135, DP_TYPE_BOOL},
+    {"get_mcusleep", 136, DP_TYPE_BOOL},
+    {"set_auto_rotate", 137, DP_TYPE_BOOL},
+    {"set_assist_rotate", 138, DP_TYPE_BOOL},
+    {"get_auto_rotate_ready", 139, DP_TYPE_BOOL},
+    {"set_auto_fan_temp", 140, DP_TYPE_VALUE},
+    {"set_auto_heat_temp", 141, DP_TYPE_VALUE},
+    {"get_rotary_position", 142, DP_TYPE_VALUE},
+    {"set_rotate_command", 143, DP_TYPE_VALUE},
+    {"set_installation_position", 144, DP_TYPE_BOOL},
+    {"get_longitude_value", 145, DP_TYPE_VALUE},
+    {"get_longitude_ew", 146, DP_TYPE_VALUE},
+    {"get_latitude_value", 147, DP_TYPE_VALUE},
+    {"get_latitude_ns", 148, DP_TYPE_VALUE},
+    {"set_lptime_onoff", 149, DP_TYPE_BOOL},
+    {"get_seat_tilt_position", 150, DP_TYPE_VALUE},
+    {"get_err_value", 151, DP_TYPE_VALUE},
+    {"set_mute_mode_switch", 152, DP_TYPE_BOOL},
+};
+
+void execute_single_iot_call(const char *method, const cJSON *val_item, int is_offline_voice) {
+    if (!method || !val_item) return;
+
+    // Find DP map
+    const iot_dp_map_t *dp_map = NULL;
+    for (size_t j = 0; j < sizeof(g_iot_dp_map)/sizeof(g_iot_dp_map[0]); j++) {
+        if (strcmp(method, g_iot_dp_map[j].method) == 0) {
+            dp_map = &g_iot_dp_map[j];
+            break;
+        }
+    }
+    
+    if (!dp_map) {
+        LOG_W("AI tool_call method '%s' not mapped to DP", method);
+        return;
+    }
+
+    uint8_t *payload = malloc(128); // Safe enough for DP payload
+    if (!payload) return;
+    
+    int payload_len = -1;
+    if (dp_map->dp_type == DP_TYPE_BOOL) {
+        uint8_t v = cJSON_IsTrue(val_item) ? 1 : 0;
+        payload_len = tuya_pack_dp_bool(dp_map->dp_id, v, payload, 64);
+    } else if (dp_map->dp_type == DP_TYPE_VALUE) {
+        int32_t v = val_item->valueint;
+        payload_len = tuya_pack_dp_value(dp_map->dp_id, v, payload, 64);
+    } else if (dp_map->dp_type == DP_TYPE_ENUM) {
+        uint8_t v = val_item->valueint;
+        payload_len = tuya_pack_dp_enum(dp_map->dp_id, v, payload, 64);
+    } else {
+        LOG_W("Unsupported DP Type %d for method %s", dp_map->dp_type, method);
+        free(payload);
+        return;
+    }
+
+    if (payload_len > 0) {
+        SystemMsg msg;
+        msg.type = is_offline_voice ? MSG_TYPE_OFFLINE_VOICE_CMD : MSG_TYPE_AI_CMD;
+        msg.cmd = CMD_DP_SEND;
+        msg.data = payload;
+        msg.len = payload_len;
+        
+        if (msg_queue_push(&g_sys_queue, &msg) != 0) {
+            free(payload);
+            LOG_E("Failed to enqueue AI tool_call to main thread");
+        } else {
+            LOG_I("Enqueued DP control: method=%s, dp_id=%d (src: %s)", 
+                  method, dp_map->dp_id, is_offline_voice ? "IPC" : "LLM");
+        }
+    } else {
+        free(payload);
+    }
+}
+
+static void execute_iot_tool_calls(const cJSON *root) {
     const cJSON *tool_calls = cJSON_GetObjectItemCaseSensitive(root, "tool_calls");
     if (!cJSON_IsArray(tool_calls)) return;
 
@@ -92,11 +210,25 @@ static void log_tool_calls(const cJSON *root) {
     LOG_I("AI Assistant tool_calls count: %d", count);
     for (int i = 0; i < count; i++) {
         const cJSON *call = cJSON_GetArrayItem(tool_calls, i);
-        char *raw = cJSON_PrintUnformatted(call);
-        if (raw) {
-            LOG_I("AI Assistant tool_call[%d]: %s", i, raw);
-            free(raw);
+        const char *method = json_get_string_or_default(call, "method", "");
+        
+        const cJSON *params = cJSON_GetObjectItemCaseSensitive(call, "parameters");
+        if (!params) {
+            LOG_W("AI tool_call missing parameters");
+            continue;
         }
+
+        const cJSON *val_item = cJSON_GetObjectItemCaseSensitive(params, "value");
+        if (!val_item) {
+            // For parameterless calls (if any exist later), we might need to handle differently
+            // But currently all DP points we care about require a value.
+            // For those without parameters, we can mock a cJSON or handle it inside.
+            // Currently all our mapped DPs need value.
+            LOG_W("AI tool_call missing 'value' in parameters");
+            continue;
+        }
+
+        execute_single_iot_call(method, val_item, 0);
     }
 }
 
@@ -128,7 +260,11 @@ static void on_message(const char *msg, void *user_data) {
         int tts_bytes = json_get_int_or_default(root, "tts_bytes_length", 0);
         LOG_I("AI Assistant Text: %s", text);
         LOG_D("AI Assistant Meta: asr_text='%s', tts_bytes_length=%d", asr_text, tts_bytes);
-        // log_tool_calls(root); // Only parse + log tool_calls, no execution here.
+        
+        // Execute tool_calls (IoT device controls)
+        if (strcmp(json_get_string_or_default(root, "intent", ""), "iot_control") == 0) {
+            execute_iot_tool_calls(root);
+        }
     } else if (strcmp(type, "error") == 0) {
         const char *message = json_get_string_or_default(root, "message", "unknown");
         LOG_E("AI Platform Error Message: %s", message);
