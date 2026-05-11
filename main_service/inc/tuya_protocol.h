@@ -82,4 +82,9 @@ typedef struct {
 // 根据 parser->cmd 分发到对应回调，未匹配则走 on_default
 void tuya_dispatch_mcu_frame(const tuya_parser_t *parser, const tuya_mcu_dispatcher_t *dispatcher, void *user_data);
 
+// 串口相关高级接口
+int tuya_uart_init(const char *dev);
+void tuya_uart_cleanup(void);
+void tuya_send_cmd(uint8_t cmd, uint8_t *data, uint16_t len);
+
 #endif

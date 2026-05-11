@@ -2,10 +2,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include <pthread.h>
-#include <fcntl.h>
-#include <termios.h>
-#include <errno.h>
 #include "inc/log.h"
 #include "inc/cloud_llm.h"
 #include "inc/tuya_protocol.h"
@@ -13,8 +9,6 @@
 #include "inc/audio_module.h"
 #include "inc/ipc_server.h"
 
-static int g_uart_fd = -1;
-static pthread_t g_uart_thread;
 MsgQueue g_sys_queue;
 static const char *g_ipc_bind_ip = "127.0.0.1";
 static const int g_ipc_cmd_port = 19090;
@@ -23,72 +17,6 @@ static const int g_ipc_cmd_port = 19090;
 void init_system(int log_to_file, LogLevel log_level);
 void cleanup_system();
 void run_event_loop();
-static int init_uart(const char *dev);
-static void *uart_rx_thread(void *arg);
-static void tuya_send_cmd(uint8_t cmd, uint8_t *data, uint16_t len);
-static void on_mcu_heartbeat(const tuya_parser_t *parser, void *user_data);
-static void on_mcu_product_info(const tuya_parser_t *parser, void *user_data);
-static void on_mcu_dp_report(const tuya_parser_t *parser, void *user_data);
-static void on_mcu_reset(const tuya_parser_t *parser, void *user_data);
-static void on_mcu_get_version(const tuya_parser_t *parser, void *user_data);
-static void on_mcu_cmd_22(const tuya_parser_t *parser, void *user_data);
-static void on_mcu_cmd_26(const tuya_parser_t *parser, void *user_data);
-static void on_mcu_default(const tuya_parser_t *parser, void *user_data);
-
-static const tuya_mcu_dispatcher_t g_mcu_dispatcher = {
-    .on_heartbeat = on_mcu_heartbeat,
-    .on_product_info = on_mcu_product_info,
-    .on_dp_report = on_mcu_dp_report,
-    .on_reset = on_mcu_reset,
-    .on_get_m_version = on_mcu_get_version,
-    .on_cmd_22 = on_mcu_cmd_22,
-    .on_cmd_26 = on_mcu_cmd_26,
-    .on_default = on_mcu_default,
-};
-
-static void on_mcu_heartbeat(const tuya_parser_t *parser, void *user_data) {
-    (void)parser;
-    (void)user_data;
-    LOG_D("[MCU -> Target] Heartbeat Response Received.");
-}
-
-static void on_mcu_product_info(const tuya_parser_t *parser, void *user_data) {
-    (void)user_data;
-    LOG_I("[MCU -> Target] Product Info: %.*s", parser->data_len, parser->data_buf);
-}
-
-static void on_mcu_dp_report(const tuya_parser_t *parser, void *user_data) {
-    (void)parser;
-    (void)user_data;
-    LOG_I("[MCU -> Target] DP Status Report Received (Length: %d).", parser->data_len);
-    // 这里你可以解析 DP 并上报给涂鸦云/AI云
-}
-
-static void on_mcu_reset(const tuya_parser_t *parser, void *user_data) {
-    (void)parser;
-    (void)user_data;
-    LOG_W("[MCU -> Target] MCU Reset Notification Received.");
-}
-
-static void on_mcu_get_version(const tuya_parser_t *parser, void *user_data) {
-    (void)user_data;
-    LOG_I("[MCU -> Target] MCU Version Reply: %.*s", parser->data_len, parser->data_buf);
-}
-
-static void on_mcu_cmd_22(const tuya_parser_t *parser, void *user_data) {
-    (void)user_data;
-    LOG_I("[MCU -> Target] CMD 0x22 Received (Length: %d).", parser->data_len);
-}
-
-static void on_mcu_cmd_26(const tuya_parser_t *parser, void *user_data) {
-    (void)user_data;
-    LOG_I("[MCU -> Target] CMD 0x26 Received (Length: %d).", parser->data_len);
-}
-
-static void on_mcu_default(const tuya_parser_t *parser, void *user_data) {
-    (void)user_data;
-    LOG_I("[MCU -> Target] Other CMD Received: 0x%02X", parser->cmd);
-}
 
 static void print_usage(const char *prog_name) {
     printf("Usage: %s [options]\n", prog_name);
@@ -193,7 +121,7 @@ void init_system(int log_to_file, LogLevel log_level) {
     }
 
     // 1. 启动 UART 线程（它会自动处理连接和重连）
-    init_uart("/tmp/ttyModule");
+    tuya_uart_init("/dev/ttyS0");
 
     // 2. 使用官方提供的公网测试设备凭据初始化 AI
     const char *test_device_id = "0001";
@@ -206,93 +134,10 @@ void init_system(int log_to_file, LogLevel log_level) {
 
 // 系统清理
 void cleanup_system() {
-    if (g_uart_fd > 0) close(g_uart_fd);
+    tuya_uart_cleanup();
     ipc_server_stop();
     cloud_llm_cleanup();
     audio_module_cleanup();
     msg_queue_destroy(&g_sys_queue);
     log_close();
-}
-
-static int init_uart(const char *dev) {
-    // 仅仅启动线程，让线程去负责连接和维护
-    pthread_create(&g_uart_thread, NULL, uart_rx_thread, (void *)dev);
-    return 0;
-}
-
-static void tuya_send_cmd(uint8_t cmd, uint8_t *data, uint16_t len) {
-    if (len > 256) {
-        LOG_E("tuya_send_cmd payload too large: %d", len);
-        return;
-    }
-    uint8_t tx_buf[512];
-    int tx_len = tuya_pack_frame(cmd, data, len, tx_buf);
-    
-    // 增加对 fd 的检查，避免向已关闭或无效的 fd 写入
-    int fd = g_uart_fd;
-    if (fd > 0) {
-        if (write(fd, tx_buf, tx_len) < 0) {
-            LOG_W("UART write failed, MCU might be disconnected.");
-        }
-    }
-}
-
-static void *uart_rx_thread(void *arg) {
-    const char *dev = (const char *)arg;
-    uint8_t buf[256];
-    tuya_parser_t parser;
-    tuya_parser_init(&parser);
-
-    LOG_I("UART background thread started for %s", dev);
-
-    while (1) {
-        if (g_uart_fd <= 0) {
-            // 尝试打开串口
-            g_uart_fd = open(dev, O_RDWR | O_NOCTTY | O_NDELAY);
-            if (g_uart_fd > 0) {
-                struct termios options;
-                tcgetattr(g_uart_fd, &options);
-                cfmakeraw(&options);
-                tcsetattr(g_uart_fd, TCSANOW, &options);
-                LOG_I("UART connected to %s (fd: %d)", dev, g_uart_fd);
-                
-                // 连接成功后，可以主动查询一次 MCU 信息
-                SystemMsg msg_info = { .type = MSG_TYPE_TIMER_TICK, .cmd = CMD_PRODUCT_INFO, .data = NULL, .len = 0 };
-                msg_queue_push(&g_sys_queue, &msg_info);
-            } else {
-                // 没打开成功，等一下再试，不阻塞主程序
-                usleep(2000000); // 2秒重试一次
-                continue;
-            }
-        }
-
-        // 已经连接，开始读取
-        int n = read(g_uart_fd, buf, sizeof(buf));
-        if (n > 0) {
-            for (int i = 0; i < n; i++) {
-                if (tuya_parser_process(&parser, buf[i])) {
-                    LOG_D("Tuya Frame Received: CMD=0x%02X, LEN=%d", parser.cmd, parser.data_len);
-                    tuya_dispatch_mcu_frame(&parser, &g_mcu_dispatcher, NULL);
-                }
-            }
-        } else if (n < 0) {
-            // 如果是因为非阻塞模式下暂时没数据，忽略它
-            if (errno == EAGAIN || errno == EWOULDBLOCK) {
-                usleep(20000); // 20ms
-                continue;
-            }
-            // 真正的读取报错，可能是模拟器关了
-            LOG_W("UART connection lost (errno: %d), closing...", errno);
-            close(g_uart_fd);
-            g_uart_fd = -1;
-            usleep(5000000); // 5秒后进入下一次循环尝试重连
-        } else {
-            // 返回 0 通常表示对端关闭（在某些伪终端或管道中）
-            LOG_W("UART connection closed by peer, reconnecting...");
-            close(g_uart_fd);
-            g_uart_fd = -1;
-            usleep(2000000);
-        }
-    }
-    return NULL;
 }
