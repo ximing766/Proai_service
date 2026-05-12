@@ -71,6 +71,8 @@ int tuya_parser_process(tuya_parser_t *parser, uint8_t byte);
 typedef struct {
     void (*on_heartbeat)(const tuya_parser_t *parser, void *user_data);
     void (*on_product_info)(const tuya_parser_t *parser, void *user_data);
+    void (*on_work_mode)(const tuya_parser_t *parser, void *user_data);
+    void (*on_wifi_state)(const tuya_parser_t *parser, void *user_data);
     void (*on_dp_report)(const tuya_parser_t *parser, void *user_data);
     void (*on_reset)(const tuya_parser_t *parser, void *user_data);
     void (*on_get_m_version)(const tuya_parser_t *parser, void *user_data);

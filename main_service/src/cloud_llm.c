@@ -247,7 +247,7 @@ static void on_message(const char *msg, void *user_data) {
         LOG_W("AI Platform Message Recv: null");
         return;
     }
-    LOG_I("AI Platform Message Recv: %s", msg);
+    // LOG_I("AI Platform Message Recv: %s", msg);
 
     cJSON *root = cJSON_Parse(msg);
     if (root == NULL) {

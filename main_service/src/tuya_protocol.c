@@ -13,15 +13,42 @@
 static int g_uart_fd = -1;
 static pthread_t g_uart_thread;
 
+// 7.1 MCU心跳响应 若在 90s 超时时间内未收到 MCU 的任何回应，则认为与MCU 通信异常模组自动内部软件重启复位
 static void on_mcu_heartbeat(const tuya_parser_t *parser, void *user_data) {
     (void)parser;
     (void)user_data;
     LOG_D("[MCU -> Target] Heartbeat Response Received.");
 }
 
+// 7.2 MCU产品信息响应
 static void on_mcu_product_info(const tuya_parser_t *parser, void *user_data) {
     (void)user_data;
     LOG_I("[MCU -> Target] Product Info: %.*s", parser->data_len, parser->data_buf);
+}
+
+// 7.3 MCU工作模式响应
+static void on_mcu_work_mode(const tuya_parser_t *parser, void *user_data) {
+    (void)user_data;
+    LOG_I("[MCU -> Target] Work Mode: %.*s", parser->data_len, parser->data_buf);
+}
+
+// 7.4 MCU联网状态响应
+static void on_mcu_wifi_state(const tuya_parser_t *parser, void *user_data) {
+    (void)user_data;
+    LOG_I("[MCU -> Target] WiFi State: %.*s", parser->data_len, parser->data_buf);
+}
+
+// 7.5 模组重置 模组接收到重置命令后，解除设备和云端绑定
+static void on_mcu_reset(const tuya_parser_t *parser, void *user_data) {
+    (void)parser;
+    (void)user_data;
+    LOG_W("[MCU -> Target] MCU Reset Notification Received.");
+}
+
+// 7.6 MCU版本信息, 需要返回响应给MCU
+static void on_mcu_get_version(const tuya_parser_t *parser, void *user_data) {
+    (void)user_data;
+    LOG_I("[MCU -> Target] MCU Version Reply: %.*s", parser->data_len, parser->data_buf);
 }
 
 // 8.3 状态上报
@@ -32,26 +59,19 @@ static void on_mcu_dp_report(const tuya_parser_t *parser, void *user_data) {
     // 这里你可以解析 DP 并上报给涂鸦云/AI云
 }
 
-static void on_mcu_reset(const tuya_parser_t *parser, void *user_data) {
-    (void)parser;
-    (void)user_data;
-    LOG_W("[MCU -> Target] MCU Reset Notification Received.");
-}
-
-static void on_mcu_get_version(const tuya_parser_t *parser, void *user_data) {
-    (void)user_data;
-    LOG_I("[MCU -> Target] MCU Version Reply: %.*s", parser->data_len, parser->data_buf);
-}
-
+// 8.5 同步状态上报, 需要返回响应给MCU,网络不好时MCU确认主板收到
 static void on_mcu_cmd_22(const tuya_parser_t *parser, void *user_data) {
     (void)user_data;
     LOG_I("[MCU -> Target] CMD 0x22 Received (Length: %d).", parser->data_len);
 }
 
+// 8.6 同步状态上报(带时间戳),记录离线期间用户操作的时间
 static void on_mcu_cmd_26(const tuya_parser_t *parser, void *user_data) {
     (void)user_data;
     LOG_I("[MCU -> Target] CMD 0x26 Received (Length: %d).", parser->data_len);
 }
+
+
 
 static void on_mcu_default(const tuya_parser_t *parser, void *user_data) {
     (void)user_data;
@@ -61,6 +81,8 @@ static void on_mcu_default(const tuya_parser_t *parser, void *user_data) {
 static const tuya_mcu_dispatcher_t g_mcu_dispatcher = {
     .on_heartbeat = on_mcu_heartbeat,
     .on_product_info = on_mcu_product_info,
+    .on_work_mode = on_mcu_work_mode,
+    .on_wifi_state = on_mcu_wifi_state,
     .on_dp_report = on_mcu_dp_report,
     .on_reset = on_mcu_reset,
     .on_get_m_version = on_mcu_get_version,
@@ -239,6 +261,12 @@ void tuya_dispatch_mcu_frame(const tuya_parser_t *parser, const tuya_mcu_dispatc
             break;
         case CMD_PRODUCT_INFO:
             if (dispatcher->on_product_info) dispatcher->on_product_info(parser, user_data);
+            break;
+        case CMD_WORK_MODE:
+            if (dispatcher->on_work_mode) dispatcher->on_work_mode(parser, user_data);
+            break;
+        case CMD_WIFI_STATE:
+            if (dispatcher->on_wifi_state) dispatcher->on_wifi_state(parser, user_data);
             break;
         case CMD_DP_REPORT:
             if (dispatcher->on_dp_report) dispatcher->on_dp_report(parser, user_data);
