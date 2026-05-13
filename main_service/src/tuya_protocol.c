@@ -79,16 +79,16 @@ static void on_mcu_default(const tuya_parser_t *parser, void *user_data) {
 }
 
 static const tuya_mcu_dispatcher_t g_mcu_dispatcher = {
-    .on_heartbeat = on_mcu_heartbeat,
-    .on_product_info = on_mcu_product_info,
-    .on_work_mode = on_mcu_work_mode,
-    .on_wifi_state = on_mcu_wifi_state,
-    .on_dp_report = on_mcu_dp_report,
-    .on_reset = on_mcu_reset,
+    .on_heartbeat     = on_mcu_heartbeat,
+    .on_product_info  = on_mcu_product_info,
+    .on_work_mode     = on_mcu_work_mode,
+    .on_wifi_state    = on_mcu_wifi_state,
+    .on_dp_report     = on_mcu_dp_report,
+    .on_reset         = on_mcu_reset,
     .on_get_m_version = on_mcu_get_version,
-    .on_cmd_22 = on_mcu_cmd_22,
-    .on_cmd_26 = on_mcu_cmd_26,
-    .on_default = on_mcu_default,
+    .on_cmd_22        = on_mcu_cmd_22,
+    .on_cmd_26        = on_mcu_cmd_26,
+    .on_default       = on_mcu_default,
 };
 
 static int configure_uart_fd(int fd) { 
@@ -109,8 +109,8 @@ static int configure_uart_fd(int fd) {
     options.c_cflag &= ~CSTOPB; 
     options.c_cflag &= ~CRTSCTS; 
 
-    options.c_cc[VMIN] = 0; 
-    options.c_cc[VTIME] = 1; 
+    options.c_cc[VMIN]  = 0;
+    options.c_cc[VTIME] = 1;
 
     if (tcsetattr(fd, TCSANOW, &options) != 0) { 
         LOG_E("UART tcsetattr failed (errno: %d)", errno); 
@@ -198,25 +198,25 @@ int tuya_parser_process(tuya_parser_t *parser, uint8_t byte) {
             break;
         case STATE_HEAD_2:
             if (byte == 0xAA) {
-                parser->state = STATE_VERSION;
+                parser->state     = STATE_VERSION;
                 parser->checksum += 0xAA;
             } else {
                 parser->state = STATE_HEAD_1;
             }
             break;
         case STATE_VERSION:
-            parser->version = byte;
-            parser->state = STATE_CMD;
+            parser->version   = byte;
+            parser->state     = STATE_CMD;
             parser->checksum += byte;
             break;
         case STATE_CMD:
-            parser->cmd = byte;
-            parser->state = STATE_LEN_1;
+            parser->cmd       = byte;
+            parser->state     = STATE_LEN_1;
             parser->checksum += byte;
             break;
         case STATE_LEN_1:
-            parser->data_len = byte << 8;
-            parser->state = STATE_LEN_2;
+            parser->data_len  = byte << 8;
+            parser->state     = STATE_LEN_2;
             parser->checksum += byte;
             break;
         case STATE_LEN_2:
@@ -224,7 +224,7 @@ int tuya_parser_process(tuya_parser_t *parser, uint8_t byte) {
             parser->checksum += byte;
             if (parser->data_len > 0) {
                 parser->data_idx = 0;
-                parser->state = STATE_DATA;
+                parser->state    = STATE_DATA;
                 // Protection against buffer overflow
                 if (parser->data_len > sizeof(parser->data_buf)) {
                     parser->state = STATE_HEAD_1; 
@@ -311,8 +311,12 @@ static void *uart_rx_thread(void *arg) {
                 LOG_I("UART connected to %s (fd: %d)", dev, g_uart_fd);
                 
                 // 连接成功后，可以主动查询一次 MCU 信息
-                SystemMsg msg_info = { .type = MSG_TYPE_TIMER_TICK, .cmd = CMD_PRODUCT_INFO, .data = NULL, .len = 0 };
-                msg_queue_push(&g_sys_queue, &msg_info);
+                // SystemMsg msg_info = { .type = MSG_TYPE_TIMER_TICK, .cmd = CMD_PRODUCT_INFO, .data = NULL, .len = 0 };
+                // msg_queue_push(&g_sys_queue, &msg_info);
+
+                // 发送全量状态查询 (CMD_DP_QUERY - 0x08)，触发 MCU 上报所有 52 个 DP 点状态
+                SystemMsg msg_query = { .type = MSG_TYPE_TIMER_TICK, .cmd = CMD_DP_QUERY, .data = NULL, .len = 0 };
+                msg_queue_push(&g_sys_queue, &msg_query);
             } else {
                 // 没打开成功，等一下再试，不阻塞主程序
                 usleep(2000000); // 2秒重试一次
@@ -376,17 +380,17 @@ void tuya_send_cmd(uint8_t cmd, uint8_t *data, uint16_t len) {
     // 根据 CMD 类型获取文本描述
     const char *cmd_name = "UNKNOWN";
     switch (cmd) {
-        case CMD_HEARTBEAT:     cmd_name = "HEARTBEAT"; break;
-        case CMD_PRODUCT_INFO:  cmd_name = "PRODUCT_INFO"; break;
-        case CMD_WORK_MODE:     cmd_name = "WORK_MODE"; break;
-        case CMD_WIFI_STATE:    cmd_name = "WIFI_STATE"; break;
-        case CMD_DP_SEND:       cmd_name = "DP_SEND"; break;
-        case CMD_DP_QUERY:      cmd_name = "DP_QUERY"; break;
-        case CMD_FUNC_22:       cmd_name = "FUNC_22"; break;
-        case CMD_FUNC_26:       cmd_name = "FUNC_26"; break;
+        case CMD_HEARTBEAT:     cmd_name = "HEARTBEAT";     break;
+        case CMD_PRODUCT_INFO:  cmd_name = "PRODUCT_INFO";  break;
+        case CMD_WORK_MODE:     cmd_name = "WORK_MODE";     break;
+        case CMD_WIFI_STATE:    cmd_name = "WIFI_STATE";    break;
+        case CMD_DP_SEND:       cmd_name = "DP_SEND";       break;
+        case CMD_DP_QUERY:      cmd_name = "DP_QUERY";      break;
+        case CMD_FUNC_22:       cmd_name = "FUNC_22";       break;
+        case CMD_FUNC_26:       cmd_name = "FUNC_26";       break;
         case CMD_UPGRADE_START: cmd_name = "UPGRADE_START"; break;
         case CMD_UPGRADE_TRANS: cmd_name = "UPGRADE_TRANS"; break;
-        default:                cmd_name = "CUSTOM"; break;
+        default:                cmd_name = "CUSTOM";        break;
     }
 
     // 格式化打印发送内容

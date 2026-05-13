@@ -11,7 +11,7 @@
 
 MsgQueue g_sys_queue;
 static const char *g_ipc_bind_ip = "127.0.0.1";
-static const int g_ipc_cmd_port = 19090;
+static const int g_ipc_cmd_port  = 19090;
 
 // 初始化系统
 void init_system(int log_to_file, LogLevel log_level);
@@ -128,7 +128,7 @@ void init_system(int log_to_file, LogLevel log_level) {
     tuya_uart_init("/dev/ttyFIQ0");
 
     // 2. 使用官方提供的公网测试设备凭据初始化 AI
-    const char *test_device_id = "0001";
+    const char *test_device_id     = "0001";
     const char *test_device_secret = "K2JJTF9SWL4NWWK28DRP7W9YAX4FSRAQ";
     
     if (cloud_llm_init(test_device_id, test_device_secret) != 0) {

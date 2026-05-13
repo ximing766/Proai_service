@@ -190,11 +190,8 @@ int execute_single_iot_call(const char *method, const cJSON *val_item, int is_of
         return -1;
     }
 
-    SystemMsg msg;
-    msg.type = is_offline_voice ? MSG_TYPE_OFFLINE_VOICE_CMD : MSG_TYPE_AI_CMD;
-    msg.cmd = CMD_DP_SEND;
-    msg.data = payload;
-    msg.len = payload_len;
+    SystemMsg msg = {.type = is_offline_voice ? MSG_TYPE_OFFLINE_VOICE_CMD : MSG_TYPE_AI_CMD,
+                     .cmd = CMD_DP_SEND, .data = payload, .len = payload_len};
 
     if (msg_queue_push(&g_sys_queue, &msg) != 0) {
         free(payload);
@@ -212,11 +209,10 @@ static void execute_iot_tool_calls(const cJSON *root) {
     if (!cJSON_IsArray(tool_calls)) return;
 
     int count = cJSON_GetArraySize(tool_calls);
-    LOG_I("AI Assistant tool_calls count: %d", count);
+    LOG_I("[LLM -> Target] tool_calls count: %d", count);
     for (int i = 0; i < count; i++) {
-        const cJSON *call = cJSON_GetArrayItem(tool_calls, i);
-        const char *method = json_get_string_or_default(call, "method", "");
-        
+        const cJSON *call   = cJSON_GetArrayItem(tool_calls, i);
+        const char *method  = json_get_string_or_default(call, "method", "");
         const cJSON *params = cJSON_GetObjectItemCaseSensitive(call, "parameters");
         if (!params) {
             LOG_W("AI tool_call missing parameters");
@@ -225,10 +221,6 @@ static void execute_iot_tool_calls(const cJSON *root) {
 
         const cJSON *val_item = cJSON_GetObjectItemCaseSensitive(params, "value");
         if (!val_item) {
-            // For parameterless calls (if any exist later), we might need to handle differently
-            // But currently all DP points we care about require a value.
-            // For those without parameters, we can mock a cJSON or handle it inside.
-            // Currently all our mapped DPs need value.
             LOG_W("AI tool_call missing 'value' in parameters");
             continue;
         }
@@ -241,30 +233,30 @@ static void cloud_llm_register_iot_capabilities(void) {
     if (!g_agent_client) return;
 
     int ret = agentSendJson(g_agent_client, k_iot_descriptor_msg);
-    LOG_I("AI IOT Register: msg=%s, ret=%d", k_iot_descriptor_msg, ret);
+    LOG_I("[Target -> LLM] Register: msg=%s", k_iot_descriptor_msg);
 }
 
 static void on_message(const char *msg, void *user_data) {
     (void)user_data;
     if (msg == NULL) {
-        LOG_W("AI Platform Message Recv: null");
+        LOG_W("[LLM -> Target] Message Recv: null");
         return;
     }
-    // LOG_I("AI Platform Message Recv: %s", msg);
+    // LOG_I("[LLM -> Target] Message Recv: %s", msg);
 
     cJSON *root = cJSON_Parse(msg);
     if (root == NULL) {
-        LOG_W("AI Platform Message Recv (non-json): %s", msg);
+        LOG_W("[LLM -> Target] Message Recv (non-json): %s", msg);
         return;
     }
 
     const char *type = json_get_string_or_default(root, "type", "");
     if (strcmp(type, "assistant_response") == 0) {
-        const char *text = json_get_string_or_default(root, "text", "");
+        const char *text     = json_get_string_or_default(root, "text", "");
         const char *asr_text = json_get_string_or_default(root, "asr_text", "");
-        int tts_bytes = json_get_int_or_default(root, "tts_bytes_length", 0);
-        LOG_I("AI Assistant Text: %s", text);
-        LOG_D("AI Assistant Meta: asr_text='%s', tts_bytes_length=%d", asr_text, tts_bytes);
+        int   tts_bytes      = json_get_int_or_default(root, "tts_bytes_length", 0);
+        LOG_I("[LLM -> Target] Text: %s", text);
+        LOG_D("[LLM -> Target] Meta: asr_text='%s', tts_bytes_length=%d", asr_text, tts_bytes);
         
         // Execute tool_calls (IoT device controls)
         if (strcmp(json_get_string_or_default(root, "intent", ""), "iot_control") == 0) {
@@ -272,15 +264,15 @@ static void on_message(const char *msg, void *user_data) {
         }
     } else if (strcmp(type, "error") == 0) {
         const char *message = json_get_string_or_default(root, "message", "unknown");
-        LOG_E("AI Platform Error Message: %s", message);
+        LOG_E("[LLM -> Target] Error Message: %s", message);
     } else if (strcmp(type, "iot") == 0) {
-        const char *event = json_get_string_or_default(root, "event", "");
+        const char *event      = json_get_string_or_default(root, "event", "");
         const char *session_id = json_get_string_or_default(root, "session_id", "");
-        int descriptor_count = json_get_int_or_default(root, "descriptor_count", -1);
-        LOG_I("AI IOT Event: event=%s, descriptor_count=%d, session_id=%s",
+        int   descriptor_count = json_get_int_or_default(root, "descriptor_count", -1);
+        LOG_I("[LLM -> Target] IOT Event: event=%s, descriptor_count=%d, session_id=%s",
               event, descriptor_count, session_id);
     } else {
-        LOG_I("AI Platform Message Recv (type=%s)", type[0] ? type : "unknown");
+        LOG_I("[LLM -> Target] Message Recv (type=%s)", type[0] ? type : "unknown");
     }
 
     cJSON_Delete(root);
@@ -301,6 +293,18 @@ static void on_status(AgentStatus status, void *user_data) {
         case AGENT_STATUS_RECONNECTING: status_str = "RECONNECTING"; break;
     }
     LOG_I("AI Platform Status Changed: %d (%s)", status, status_str);
+    
+    // 向主线程推入网络状态更新指令 (CMD_WIFI_STATE - 0x03)  0x01/0x02 为未连接云端
+    uint8_t *payload = malloc(1);
+    if (payload) {
+        payload[0] = (status == AGENT_STATUS_CONNECTED) ? 0x04 : 0x01;
+
+        SystemMsg msg = {.type = MSG_TYPE_TUYA_CMD, .cmd = CMD_WIFI_STATE, .data = payload, .len = 1};
+        if (msg_queue_push(&g_sys_queue, &msg) != 0) {
+            free(payload);
+            LOG_E("Failed to enqueue WIFI_STATE command");
+        }
+    }
 }
 
 static void on_error(int error_code, const char *err_msg, void *user_data) {
@@ -319,17 +323,17 @@ int cloud_llm_init(const char *device_id, const char *device_secret) {
 
     AgentConfig config;
     memset(&config, 0, sizeof(AgentConfig));
-    config.ws_url = "wss://tongqu.zworker.online/ws/v1/chat"; // 生产环境公网地址
-    config.device_id = device_id;
-    config.client_id = "proai-linux-client";
-    config.authorization = ""; // 使用空字符串而非 NULL
-    config.audio_format = "pcm";
-    config.sample_rate = 16000;
-    config.channels = 1;
+    config.ws_url            = "wss://tongqu.zworker.online/ws/v1/chat";
+    config.device_id         = device_id;
+    config.client_id         = "proai-linux-client";
+    config.authorization     = "";
+    config.audio_format      = "pcm";
+    config.sample_rate       = 16000;
+    config.channels          = 1;
     config.frame_duration_ms = 20;
-    config.feature_iot = 1;
-    config.feature_speaker = 0; // 强制文本模式，不请求 TTS 音频
-    config.feature_mcp = 0;
+    config.feature_iot       = 1;
+    config.feature_speaker   = 1;        // 强制文本模式，不请求 TTS 音频
+    config.feature_mcp       = 0;
 
     g_agent_client = agentCreateClient(&config);
     if (!g_agent_client) {
@@ -370,7 +374,7 @@ int cloud_llm_send_text(const char *text) {
         return -1;
     }
     int ret = agentSendText(g_agent_client, text);
-    LOG_I("AI Platform Sending Text: '%s' (Result Code: %d)", text, ret);
+    LOG_I("[Target -> LLM]: '%s' ", text);
     return ret;
 }
 
@@ -380,7 +384,7 @@ int cloud_llm_send_json(const char *json_str) {
         return -1;
     }
     int ret = agentSendJson(g_agent_client, json_str);
-    LOG_I("AI Platform Sending JSON: %s (Result Code: %d)", json_str, ret);
+    LOG_I("[Target -> LLM]: %s", json_str);
     return ret;
 }
 

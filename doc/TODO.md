@@ -8,7 +8,7 @@ MCU 内部的 protocol.c 和 system.c 有一套严格的状态机。仅仅发心
   - 为什么必须做 ：MCU 需要知道当前设备是否连上了外网，以此来控制设备面板上的 Wi-Fi/信号指示灯，并在断网时执行特定的本地离线策略。
   - 怎么做 ：当你在 main.c 收到 AI Platform Status Changed: 3 (CONNECTED) 时，需要通过串口给 MCU 下发一帧 0x03 指令，告诉它“已连上云端”。
 ### 2. 必须实现的数据上报解析 (CMD_DP_REPORT - 0x07)
-目前在 main.c:L33 的 on_mcu_dp_report 函数中，你仅仅做了 LOG_I 打印。
+目前在 main_service/src/tuya_protocol.c:L33 的 on_mcu_dp_report 函数中，你仅仅做了 LOG_I 打印。
 
-- 为什么必须做 ：当用户在 座椅物理按键 上按了“开启加热”时，MCU 会通过 0x07 把状态发给目标板。如果你不解析并上报给 AI 云（通过 cloud_llm.c 里的接口），手机 App 上看到的状态就会和实际不一致（也就是常说的“状态不同步”）。
+- 为什么必须做 ：当用户在 座椅物理按键 上按了“开启加热”时，MCU 会通过 0x07 把状态发给目标板。如果你不解析并上报给 AI 云，手机 App 上看到的状态就会和实际不一致（也就是常说的“状态不同步”）。
 - 怎么做 ：你需要在这里按照 [DP_ID(1字节)] [DP_TYPE(1字节)] [DP_LEN(2字节)] [VALUE] 的格式拆包，然后调用 Tongqu SDK 的接口推送到云端。

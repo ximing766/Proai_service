@@ -18,11 +18,11 @@
 
 #define IPC_MAX_LINE 1024
 
-static int g_listen_fd = -1;
 static pthread_t g_ipc_thread;
+static int g_listen_fd            = -1;
 static volatile int g_ipc_running = 0;
-static char g_bind_ip[64] = {0};
-static int g_bind_port = 0;
+static char g_bind_ip[64]         = {0};
+static int g_bind_port            = 0;
 
 static void send_json_response(int fd, int ok, const char *message) {
     char resp[256];
@@ -36,12 +36,7 @@ static void send_json_response(int fd, int ok, const char *message) {
 }
 
 static int enqueue_mcu_cmd(uint8_t cmd, uint8_t *data, uint16_t len, MsgType type) {
-    SystemMsg msg;
-    msg.type = type;
-    msg.cmd = cmd;
-    msg.data = data;
-    msg.len = len;
-
+    SystemMsg msg = {.type = type, .cmd = cmd, .data = data, .len = len};
     if (msg_queue_push(&g_sys_queue, &msg) != 0) {
         if (data) free(data);
         LOG_E("IPC queue push failed");
@@ -54,7 +49,7 @@ static int handle_intent(const cJSON *root) {
     const cJSON *intent = cJSON_GetObjectItemCaseSensitive(root, "intent");
     if (!cJSON_IsString(intent) || intent->valuestring == NULL) return -1;
 
-    const char *method = intent->valuestring;
+    const char *method    = intent->valuestring;
     const cJSON *val_item = cJSON_GetObjectItemCaseSensitive(root, "value");
     
     if (execute_single_iot_call(method, val_item, 1) != 0) {
