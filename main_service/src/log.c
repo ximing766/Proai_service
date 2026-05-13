@@ -9,6 +9,7 @@
 #include <dirent.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include <pthread.h>
 
 #define LOG_DIR "log"
 #define MAX_LOG_SIZE (2 * 1024 * 1024) // 2MB
@@ -17,6 +18,7 @@
 static FILE *log_fp = NULL;
 static int use_file = 0;
 static LogLevel g_log_level = LOG_LEVEL_DEBUG;
+static pthread_mutex_t g_log_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void log_set_level(LogLevel level) {
     g_log_level = level;
@@ -93,14 +95,19 @@ static void check_log_rotation() {
 }
 
 void log_init(int to_file) {
+    pthread_mutex_lock(&g_log_mutex);
     use_file = to_file;
-    if (!use_file) return;
+    if (!use_file) {
+        pthread_mutex_unlock(&g_log_mutex);
+        return;
+    }
 
     struct stat st = {0};
     if (stat(LOG_DIR, &st) == -1) {
         if (mkdir(LOG_DIR, 0755) != 0) {
             perror("Failed to create LOG directory");
-            use_file = 0; // 回退到终端输出
+            use_file = 0;
+            pthread_mutex_unlock(&g_log_mutex);
             return;
         }
     }
@@ -110,15 +117,18 @@ void log_init(int to_file) {
         log_fp = NULL;
     }
 
-    rotate_logs(); // 启动时清理多余的历史日志文件
-    open_new_log_file(); // 确保每次启动都创建新文件
+    rotate_logs();
+    open_new_log_file();
+    pthread_mutex_unlock(&g_log_mutex);
 }
 
 void log_close(void) {
+    pthread_mutex_lock(&g_log_mutex);
     if (log_fp) {
         fclose(log_fp);
         log_fp = NULL;
     }
+    pthread_mutex_unlock(&g_log_mutex);
 }
 
 void log_write(LogLevel level, const char *fmt, ...) {
@@ -127,7 +137,7 @@ void log_write(LogLevel level, const char *fmt, ...) {
     struct timeval tv;
     gettimeofday(&tv, NULL);
     struct tm *t = localtime(&tv.tv_sec);
-    
+
     char time_buf[64];
     int len = strftime(time_buf, sizeof(time_buf), "%Y-%m-%d %H:%M:%S", t);
     snprintf(time_buf + len, sizeof(time_buf) - len, ".%03ld", tv.tv_usec / 1000);
@@ -137,38 +147,37 @@ void log_write(LogLevel level, const char *fmt, ...) {
     const char *color_end = "\033[0m";
 
     switch (level) {
-        case LOG_LEVEL_INFO:  
-            level_str = "INFO"; 
-            color_start = "\033[32m"; // Green
+        case LOG_LEVEL_INFO:
+            level_str = "INFO";
+            color_start = "\033[32m";
             break;
-        case LOG_LEVEL_DEBUG: 
-            level_str = "DEBG"; 
-            color_start = "\033[34m"; // Blue
+        case LOG_LEVEL_DEBUG:
+            level_str = "DEBG";
+            color_start = "\033[34m";
             break;
-        case LOG_LEVEL_WARN:  
-            level_str = "WARN"; 
-            color_start = "\033[33m"; // Yellow
+        case LOG_LEVEL_WARN:
+            level_str = "WARN";
+            color_start = "\033[33m";
             break;
-        case LOG_LEVEL_ERROR: 
-            level_str = "EROR"; 
-            color_start = "\033[31m"; // Red
+        case LOG_LEVEL_ERROR:
+            level_str = "EROR";
+            color_start = "\033[31m";
             break;
-        default:              
-            level_str = "UNKNOWN"; 
+        default:
+            level_str = "UNKNOWN";
             break;
     }
 
-    // 1. 终端输出 (始终开启，带颜色)
     FILE *term_out = (level == LOG_LEVEL_ERROR) ? stderr : stdout;
     va_list args_term;
     va_start(args_term, fmt);
     fprintf(term_out, "%s[%s] [%s] ", color_start, time_buf, level_str);
     vfprintf(term_out, fmt, args_term);
     fprintf(term_out, "%s\n", color_end);
-    fflush(term_out); // 强制刷新缓冲区，解决 journalctl 延迟问题
+    fflush(term_out);
     va_end(args_term);
 
-    // 2. 文件输出 (如果开启，无颜色)
+    pthread_mutex_lock(&g_log_mutex);
     if (use_file && log_fp) {
         va_list args_file;
         va_start(args_file, fmt);
@@ -178,7 +187,7 @@ void log_write(LogLevel level, const char *fmt, ...) {
         fflush(log_fp);
         va_end(args_file);
 
-        // 检查是否需要轮转
         check_log_rotation();
     }
+    pthread_mutex_unlock(&g_log_mutex);
 }

@@ -57,9 +57,12 @@ static int handle_intent(const cJSON *root) {
     const char *method = intent->valuestring;
     const cJSON *val_item = cJSON_GetObjectItemCaseSensitive(root, "value");
     
-    // 复用云端相同的映射执行逻辑，传入 method, value 节点，并标识来源于 offline voice (1)
-    execute_single_iot_call(method, val_item, 1);
-    
+    int ret = execute_single_iot_call(method, val_item, 1);
+    if (ret != 0) {
+        LOG_W("IPC intent rejected: %s", method);
+        return -1;
+    }
+
     LOG_I("IPC intent handled: %s", method);
     return 0;
 }

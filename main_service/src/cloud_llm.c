@@ -146,10 +146,10 @@ static const iot_dp_map_t g_iot_dp_map[] = {
     {"set_mute_mode_switch", 152, DP_TYPE_BOOL},
 };
 
-void execute_single_iot_call(const char *method, const cJSON *val_item, int is_offline_voice) {
+int execute_single_iot_call(const char *method, const cJSON *val_item, int is_offline_voice) {
     if (!method || !val_item) {
         LOG_E("Invalid method or value item for AI tool_call");
-        return;
+        return -1;
     }
 
     // Find DP map
@@ -163,11 +163,11 @@ void execute_single_iot_call(const char *method, const cJSON *val_item, int is_o
     
     if (!dp_map) {
         LOG_W("AI tool_call method '%s' not mapped to DP", method);
-        return;
+        return -1;
     }
 
     uint8_t *payload = malloc(128); // Safe enough for DP payload
-    if (!payload) return;
+    if (!payload) return -1;
     
     int payload_len = -1;
     if (dp_map->dp_type == DP_TYPE_BOOL) {
@@ -182,7 +182,7 @@ void execute_single_iot_call(const char *method, const cJSON *val_item, int is_o
     } else {
         LOG_W("Unsupported DP Type %d for method %s", dp_map->dp_type, method);
         free(payload);
-        return;
+        return -1;
     }
 
     if (payload_len > 0) {
@@ -195,12 +195,15 @@ void execute_single_iot_call(const char *method, const cJSON *val_item, int is_o
         if (msg_queue_push(&g_sys_queue, &msg) != 0) {
             free(payload);
             LOG_E("Failed to enqueue AI tool_call to main thread");
+            return -1;
         } else {
-            LOG_I("Enqueued DP control: method=%s, dp_id=%d (src: %s)", 
+            LOG_I("Enqueued DP control: method=%s, dp_id=%d (src: %s)",
                   method, dp_map->dp_id, is_offline_voice ? "IPC" : "LLM");
+            return 0;
         }
     } else {
         free(payload);
+        return -1;
     }
 }
 

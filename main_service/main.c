@@ -35,7 +35,11 @@ int main(int argc, char *argv[]) {
         if (strcmp(argv[i], "-s") == 0) {
             log_to_file = 0;
         } else if (strcmp(argv[i], "-v") == 0 && i + 1 < argc) {
-            log_level = (LogLevel)atoi(argv[++i]);
+            int parsed_level = atoi(argv[++i]);
+            if (parsed_level < LOG_LEVEL_DEBUG || parsed_level > LOG_LEVEL_NONE) {
+                parsed_level = LOG_LEVEL_INFO;
+            }
+            log_level = (LogLevel)parsed_level;
         } else if (strcmp(argv[i], "-h") == 0) {
             print_usage(argv[0]);
             return 0;

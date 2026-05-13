@@ -11,70 +11,6 @@ This repository’s primary runnable target is `main_service`, a Linux-side C se
 
 Most implementation work should be assumed to happen in `main_service/`.
 
-## Build, run, deploy commands
-
-### Main service build
-
-From repo root:
-
-```bash
-cd main_service
-./build.sh
-```
-
-Strip binary for smaller release artifact:
-
-```bash
-cd main_service
-./build.sh --strip
-```
-
-### Deploy to target board
-
-`deploy.sh` builds and SCPs `proai_service` to the configured board path:
-
-```bash
-cd main_service
-./deploy.sh
-./deploy.sh --strip
-```
-
-### Run service
-
-From the board deployment directory (or wherever `proai_service` is placed):
-
-```bash
-./proai_service
-./proai_service -s -v 0
-./proai_service -h
-```
-
-CLI flags from `main_service/main.c`:
-- `-s`: stdout logging only (no file log)
-- `-v <0-4>`: `0=DEBUG,1=INFO,2=WARN,3=ERROR,4=NONE`
-- `-h`: usage help
-
-### MCU simulator for local integration
-
-```bash
-cd mcutools
-python3 rabbit_mcu_sim.py
-```
-
-This creates `/tmp/ttyModule`, which `main_service` uses as default UART device.
-
-## Tests and linting
-
-There is no repository-level unit-test/lint framework configured (no `pytest`, `ctest`, `make test`, or dedicated lint config discovered in current tree). Validation is currently build-and-run/integration driven.
-
-If you need a single-target verification loop, use:
-
-```bash
-cd main_service
-./build.sh
-```
-
-and then run the produced binary against either real MCU or `mcutools/rabbit_mcu_sim.py`.
 
 ## Architecture overview (big picture)
 
@@ -127,6 +63,10 @@ If runtime linking fails on target, verify `LD_LIBRARY_PATH` includes `rockchip8
 ## Important docs to consult
 
 - `main_service/README.md`: end-to-end service architecture, startup options, packaging/deploy notes
-- `example/README.md`: standalone SDK voice example, env var contract, expected runtime logs
 
 No Cursor rules or Copilot instruction files were found in this repository snapshot (`.cursorrules`, `.cursor/rules/`, `.github/copilot-instructions.md` absent).
+
+## Important rules
+- don't build or deploy main_service
+- only modify files in main_service/
+- don't create git commits in .claude/
