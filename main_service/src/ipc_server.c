@@ -57,8 +57,7 @@ static int handle_intent(const cJSON *root) {
     const char *method = intent->valuestring;
     const cJSON *val_item = cJSON_GetObjectItemCaseSensitive(root, "value");
     
-    int ret = execute_single_iot_call(method, val_item, 1);
-    if (ret != 0) {
+    if (execute_single_iot_call(method, val_item, 1) != 0) {
         LOG_W("IPC intent rejected: %s", method);
         return -1;
     }

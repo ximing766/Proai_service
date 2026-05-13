@@ -21,11 +21,16 @@ static LogLevel g_log_level = LOG_LEVEL_DEBUG;
 static pthread_mutex_t g_log_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void log_set_level(LogLevel level) {
+    pthread_mutex_lock(&g_log_mutex);
     g_log_level = level;
+    pthread_mutex_unlock(&g_log_mutex);
 }
 
 LogLevel log_get_level(void) {
-    return g_log_level;
+    pthread_mutex_lock(&g_log_mutex);
+    LogLevel level = g_log_level;
+    pthread_mutex_unlock(&g_log_mutex);
+    return level;
 }
 
 static int cmpstringp(const void *p1, const void *p2) {
@@ -132,7 +137,10 @@ void log_close(void) {
 }
 
 void log_write(LogLevel level, const char *fmt, ...) {
-    if (level < g_log_level) return;
+    pthread_mutex_lock(&g_log_mutex);
+    LogLevel current_level = g_log_level;
+    pthread_mutex_unlock(&g_log_mutex);
+    if (level < current_level) return;
 
     struct timeval tv;
     gettimeofday(&tv, NULL);

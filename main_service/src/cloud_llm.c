@@ -185,26 +185,26 @@ int execute_single_iot_call(const char *method, const cJSON *val_item, int is_of
         return -1;
     }
 
-    if (payload_len > 0) {
-        SystemMsg msg;
-        msg.type = is_offline_voice ? MSG_TYPE_OFFLINE_VOICE_CMD : MSG_TYPE_AI_CMD;
-        msg.cmd = CMD_DP_SEND;
-        msg.data = payload;
-        msg.len = payload_len;
-        
-        if (msg_queue_push(&g_sys_queue, &msg) != 0) {
-            free(payload);
-            LOG_E("Failed to enqueue AI tool_call to main thread");
-            return -1;
-        } else {
-            LOG_I("Enqueued DP control: method=%s, dp_id=%d (src: %s)",
-                  method, dp_map->dp_id, is_offline_voice ? "IPC" : "LLM");
-            return 0;
-        }
-    } else {
+    if (payload_len <= 0) {
         free(payload);
         return -1;
     }
+
+    SystemMsg msg;
+    msg.type = is_offline_voice ? MSG_TYPE_OFFLINE_VOICE_CMD : MSG_TYPE_AI_CMD;
+    msg.cmd = CMD_DP_SEND;
+    msg.data = payload;
+    msg.len = payload_len;
+
+    if (msg_queue_push(&g_sys_queue, &msg) != 0) {
+        free(payload);
+        LOG_E("Failed to enqueue AI tool_call to main thread");
+        return -1;
+    }
+
+    LOG_I("Enqueued DP control: method=%s, dp_id=%d (src: %s)",
+          method, dp_map->dp_id, is_offline_voice ? "IPC" : "LLM");
+    return 0;
 }
 
 static void execute_iot_tool_calls(const cJSON *root) {
