@@ -8,6 +8,7 @@
 #include "inc/queue.h"
 #include "inc/audio_module.h"
 #include "inc/ipc_server.h"
+#include "inc/ota_handler.h"
 
 MsgQueue g_sys_queue;
 static const char *g_ipc_bind_ip = "127.0.0.1";
@@ -68,8 +69,12 @@ void run_event_loop() {
             case MSG_TYPE_TUYA_CMD:
             case MSG_TYPE_TIMER_TICK:
             case MSG_TYPE_OFFLINE_VOICE_CMD:
-                // 将指令下发给 MCU (唯一的串口写入点)
-                tuya_send_cmd(msg.cmd, msg.data, msg.len);
+                // OTA 期间，拦截所有的 DP 控制和业务消息
+                if (is_ota_in_progress() && msg.cmd != CMD_UPGRADE_START && msg.cmd != CMD_UPGRADE_TRANS) {
+                    LOG_W("OTA in progress, dropped CMD: 0x%02X", msg.cmd);
+                } else {
+                    tuya_send_cmd(msg.cmd, msg.data, msg.len);
+                }
                 break;
             case MSG_TYPE_MCU_REPORT:
                 // MCU 状态上报逻辑（可在此统一处理转发云端）

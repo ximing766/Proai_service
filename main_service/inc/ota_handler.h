@@ -11,11 +11,8 @@ typedef enum {
     OTA_ERROR
 } ota_state_t;
 
-typedef void (*ota_notify_cb_t)(int code, const char *msg);
-
-void ota_init(int uart_fd_in, ota_notify_cb_t notify_cb);
 int ota_start(const char *filepath);
 void ota_handle_mcu_msg(uint8_t cmd, const uint8_t *data, int len);
-int is_ota_in_progress();
+int is_ota_in_progress(void);
 
 #endif

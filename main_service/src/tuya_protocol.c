@@ -1,6 +1,7 @@
 #include "../inc/tuya_protocol.h"
 #include "../inc/log.h"
 #include "../inc/queue.h"
+#include "../inc/ota_handler.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -282,6 +283,11 @@ void tuya_dispatch_mcu_frame(const tuya_parser_t *parser, const tuya_mcu_dispatc
             break;
         case CMD_MCU_FUNC_26:
             if (dispatcher->on_cmd_26) dispatcher->on_cmd_26(parser, user_data);
+            break;
+        case CMD_UPGRADE_START:
+        case CMD_UPGRADE_TRANS:
+            // 路由 OTA 响应给 ota_handler
+            ota_handle_mcu_msg(parser->cmd, parser->data_buf, parser->data_len);
             break;
         default:
             if (dispatcher->on_default) dispatcher->on_default(parser, user_data);
